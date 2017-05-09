@@ -7,7 +7,7 @@
         <div class="item <?=$active;?>">
           <?=$s['picture'];?>
           <div class="carousel-caption">
-            <?=$s['caption'];?>
+            <?=$s['fullname'];?>
           </div>
         </div>
       <?php endforeach; ?>

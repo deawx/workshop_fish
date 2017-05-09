@@ -5,3 +5,6 @@
     <p><?=character_limiter($f['detail'],'100');?></p>
   </div>
 <?php endforeach; ?>
+<div class="pull-right">
+  <?=$this->pagination->create_links();;?>
+</div>
