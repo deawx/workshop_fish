@@ -1,0 +1,11 @@
+$(document).ready(function(){
+  $("#btn-blog-next").click(function(){
+    $('#blogCarousel').carousel('next')
+  });
+  $("#btn-blog-prev").click(function(){
+    $('#blogCarousel').carousel('prev')
+  });
+  $('.datatable').dataTable();
+  $('.datepicker').datepicker({language:'th',format:'dd/mm/yyyy'});
+});
+CKEDITOR.replace('.ckeditor');

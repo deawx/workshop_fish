@@ -1,0 +1,28 @@
+/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  padding-top: 70px;
+  min-height: 100%;
+  line-height: 1em;
+}
+
+nav {
+  padding: 5px 0px;
+}
+
+/* Footer Styles */
+
+footer {
+    margin: 50px 0;
+}
