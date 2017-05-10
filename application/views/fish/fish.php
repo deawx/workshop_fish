@@ -47,9 +47,13 @@
     </div>
   <?=form_submit('','ค้นหาข้อมูลที่เลือก',array('class'=>'btn btn-info btn-block'));?>
   <?=form_close();?>
+  <br><p class="text-center">หรือ</p>
+  <?=($this->session->is_login) ? anchor('fish/create','เพิ่มข้อมูลปลาสวยงาม',array('class'=>'btn btn-success btn-block')).br().hr() : '';?>
 </div>
 <div class="col-lg-9">
-  <?=($this->session->is_login) ? anchor('fish/create','เพิ่มข้อมูลปลาสวยงาม',array('class'=>'btn btn-success pull-right')).br().hr() : '';?>
+  <?php if ($this->session->userdata('compare')) : ?>
+    <?php echo anchor('compare','ใส่ปลาลงตู้ &raquo',array('class'=>'btn btn-primary btn-block'));?><hr>
+  <?php endif; ?>
   <?php foreach ($fish as $f) : ?>
     <div class="col-sm-4 portfolio-item" style="height:422px;">
       <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:350px;height:200px;'));?>

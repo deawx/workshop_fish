@@ -45,9 +45,6 @@
           <li class="<?=(in_array('about',$this->uri->segment_array()))?'active':'';?>"><?=anchor('main/about','เกี่ยวกับเรา');?></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <?php if ($this->session->userdata('compare')) : ?>
-            <li class="<?=(in_array('compare',$this->uri->segment_array()))?'active':'';?>"><?=anchor('compare','ใส่ปลาลงตู้');?></li>
-          <?php endif; ?>
           <?php if ($this->session->userdata('is_login')) : ?>
             <li class="dropdown">
               <?=anchor('#',$this->session->fullname.nbs(2).'<span class="caret"></span>',['class'=>'dropdown-toggle','data-toggle'=>'dropdown']);?>

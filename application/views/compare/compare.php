@@ -14,7 +14,16 @@ foreach ($fish as $_f => $f) :
   endif;
 endforeach;
 ?>
-<?=($this->session->is_login === TRUE) ? anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป',array('id'=>'btn-final','class'=>'btn btn-success btn-block')).hr() : '';?>
+<?php if ($this->session->is_login === TRUE) : ?>
+<div class="row">
+  <div class="col-sm-4">
+    <?=anchor('fish','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?>
+  </div>
+  <div class="col-sm-8">
+    <?php echo anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป',array('id'=>'btn-final','class'=>'btn btn-success btn-block')).hr(); ?>
+  </div>
+</div>
+<?php endif; ?>
 <?=heading('<u>รายการปลาที่เลือกทั้งหมด</u>','4');?>
 <div class="row">
   <?php foreach ($fish as $_f => $f) : ?>
@@ -135,8 +144,8 @@ endforeach;
 $(document).ready(function(){
   alert = $('.alert').html();
   if (alert) {
-    $('#btn-final').attr('disabled',true);
-    $('#btn-final').removeAttr('href');
+    $('#btn-final').attr('onclick',"return confirm('พบรายการแจ้งเตือน! ท่านต้องการเข้าสู่ขั้นตอนต่อไปหรือไม่?');");
+    // $('#btn-final').removeAttr('href');
   }
 });
 </script>

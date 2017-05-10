@@ -35,9 +35,7 @@ $form = [
         <caption><?=heading($f['fullname'],'5');?></caption>
         <?=form_number(array('name'=>'amount['.$f['id'].']','class'=>'form-control','placeholder'=>'จำนวน','required'=>TRUE));?>
         <br>
-        <div class="panel panel-warning">
-          <div class="panel-heading"><h3 class="panel-title">คำแนะนำ</h3></div>
-          <div class="panel-body">
+            <p class="alert alert-warning">*
             <?php
             $recommend = '';
             switch ($f['living_id']) :
@@ -59,8 +57,7 @@ $form = [
             endswitch;
             ?>
             <?php echo $recommend; ?>
-          </div>
-        </div>
+            <p>
       </div>
     </div>
   <?php endforeach; ?>

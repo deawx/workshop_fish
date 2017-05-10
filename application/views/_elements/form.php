@@ -21,7 +21,8 @@ $anchor = isset($anchor) ? (array)$anchor : [];
   <div class="form-group">
     <div class="col-sm-offset-3">
       <?=form_submit('','ยืนยัน',['class'=>'col-sm-2 btn btn-success','autocomplete'=>'off']);?>
-      <?=form_reset('','ยกเลิก',['class'=>'btn btn-link','autocomplete'=>'off']);?>
+      <?=form_reset('','ล้างข้อมูล',['class'=>'btn btn-link','autocomplete'=>'off']);?>
+      <?=anchor($this->agent->referrer(),'ย้อนกลับ',['class'=>'btn btn-link pull-right']);?>
       <?php foreach ($anchor as $_a => $a) : ?>
         <?=anchor($a['link'],$a['name'],['class'=>'btn btn-link']);?>
       <?php endforeach; ?>
