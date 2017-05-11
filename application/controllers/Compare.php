@@ -64,6 +64,9 @@ class Compare extends MY_Controller {
   {
     $post = $this->input->post();
     if ($post) :
+      if ( ! $this->session->is_login)
+        return FALSE;
+        
       $amount = $post['amount'];
       unset($post['amount']);
       $this->db->insert('compare',$post);

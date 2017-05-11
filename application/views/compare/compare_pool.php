@@ -22,7 +22,11 @@ $form = [
     <?=anchor('compare','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?>
   </div>
   <div class="col-sm-8">
-    <?=form_submit('','บันทึกข้อมูลการเปรียบเทียบ',array('class'=>'btn btn-success btn-block'));?>
+    <?php if ($this->session->is_login) : ?>
+      <?=form_submit('','บันทึกข้อมูลการเปรียบเทียบ &raquo',array('class'=>'btn btn-success btn-block'));?>
+    <?php else: ?>
+      <?=form_button('','กรูณาเข้าสู่ระบบก่อนทำรายการ',array('class'=>'btn btn-default btn-block disabled'));?>
+    <?php endif; ?>
   </div>
 </div>
 <?=hr();?>

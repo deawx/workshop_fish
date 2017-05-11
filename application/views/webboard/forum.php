@@ -57,7 +57,7 @@
     </div>
   </div>
   <?=form_close().hr();?>
-  <?=($this->session->is_login) ? anchor('webboard/post','เริ่มหัวข้อใหม่',['class'=>'btn btn-primary pull-right']) : '';?>
+  <?=($this->session->is_login && $this->session->role == 'admin') ? anchor('webboard/post','เริ่มหัวข้อใหม่',['class'=>'btn btn-primary pull-right']) : '';?>
   <?=heading('เว็บบอร์ดพี่น้องผู้นิยมการเลี้ยงปลาตามความเชื่อต่างๆ','4').hr();?>
   <?php foreach ($forum as $n) : ?>
     <div class="panel panel-info">
