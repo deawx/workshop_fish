@@ -1,7 +1,9 @@
-<?php if ($this->uri->segment(3)) : ?>
+<?php if ($this->uri->segment(3) > 0) : ?>
+  <?php $edit = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/post/'.$compare['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
+  <?php $delete = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/delete_compare/'.$compare['id'],'ลบ',array('class'=>'btn btn-danger pull-right','onclick'=>"return confirm('ต้องการลบหัวข้อนี้?');")) :'';?>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <?=heading($compare['pool_title'],'3',array('class'=>'panel-title'));?>
+      <?=heading($compare['pool_title'],'3',array('class'=>'panel-title')).$delete.$edit;?>
     </div>
     <div class="panel-body">
       <p>เมื่อ <?=$compare['date_create'].nbs(5).'โดย '.anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']).'</p>';?>
@@ -30,7 +32,6 @@
         <p style="text-indent:40px;line-height:1.8em;"><?=$compare['fish_amount'];?></p>
         <?=br();?>
       </div>
-
     </div>
   </div>
   <div class="col-sm-offset-1">

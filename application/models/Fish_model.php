@@ -37,7 +37,7 @@ class Fish_model extends MY_Model {
         $upload = [
           'allowed_types'	=> 'jpg|jpeg|png',
           'upload_path'	=> realpath(APPPATH.'../assets/fish'),
-          'file_name'		=> $post['fullname'].'_'.$id,
+          'file_name'		=> md5($post['fullname']),
           'file_ext_tolower' => TRUE,
           'overwrite' => TRUE
         ];

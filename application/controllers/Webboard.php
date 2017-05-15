@@ -130,6 +130,13 @@ class Webboard extends MY_Controller {
     redirect($this->agent->referrer());
   }
 
+  function delete_compare($id)
+  {
+    $this->db->delete('compare',array('id'=>$id));
+    $this->session->set_flashdata(['class'=>'success','value'=>'ลบหัวข้อเรียบร้อยแล้ว']);
+    redirect('webboard');
+  }
+
   function delete_compare_comment($id)
   {
     $this->db->delete('compare_comment',array('id'=>$id));
