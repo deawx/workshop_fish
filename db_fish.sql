@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 29, 2016 at 01:01 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Host: 127.0.0.1
+-- Generation Time: May 15, 2017 at 05:06 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,9 +26,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `compare`
 --
 
-CREATE TABLE IF NOT EXISTS `compare` (
-  `id` int(5) unsigned NOT NULL,
-  `member_id` int(5) unsigned NOT NULL,
+CREATE TABLE `compare` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `member_id` int(5) UNSIGNED NOT NULL,
   `pool_title` varchar(100) NOT NULL,
   `pool_shape` text NOT NULL,
   `pool_detail` text NOT NULL,
@@ -37,17 +37,16 @@ CREATE TABLE IF NOT EXISTS `compare` (
   `views` int(5) NOT NULL,
   `date_create` varchar(10) NOT NULL,
   `date_modify` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `compare`
 --
 
 INSERT INTO `compare` (`id`, `member_id`, `pool_title`, `pool_shape`, `pool_detail`, `pool_believe`, `fish_amount`, `views`, `date_create`, `date_modify`) VALUES
-(1, 1, 'test1', 'test', 'test', 'test', 3, 25, '13/04/2016', ''),
+(1, 1, 'test1', 'test', 'test', 'test', 3, 28, '13/04/2016', ''),
 (2, 1, 'test2', 'ะำหะ', 'ะำหะ', 'ะหำะ', 3, 1, '13/04/2016', ''),
-(3, 1, 'test3', '1', '1', '1', 1, 36, '13/04/2016', ''),
-(4, 1, 'test4', '1', '1', '1', 1, 6, '13/04/2016', '');
+(3, 1, 'test3', '1', '1', '1', 1, 36, '13/04/2016', '');
 
 -- --------------------------------------------------------
 
@@ -55,14 +54,14 @@ INSERT INTO `compare` (`id`, `member_id`, `pool_title`, `pool_shape`, `pool_deta
 -- Table structure for table `compare_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `compare_comment` (
-  `id` int(5) unsigned NOT NULL,
-  `compare_id` int(5) unsigned NOT NULL,
-  `commented_by` int(5) unsigned NOT NULL,
+CREATE TABLE `compare_comment` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `compare_id` int(5) UNSIGNED NOT NULL,
+  `commented_by` int(5) UNSIGNED NOT NULL,
   `detail` text,
   `date_create` varchar(19) NOT NULL,
   `date_modify` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `compare_comment`
@@ -79,12 +78,12 @@ INSERT INTO `compare_comment` (`id`, `compare_id`, `commented_by`, `detail`, `da
 -- Table structure for table `compare_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `compare_detail` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `compare_detail` (
+  `id` int(5) UNSIGNED NOT NULL,
   `compare_id` int(5) NOT NULL,
-  `fish_id` int(5) unsigned NOT NULL,
+  `fish_id` int(5) UNSIGNED NOT NULL,
   `amount` varchar(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `compare_detail`
@@ -98,7 +97,9 @@ INSERT INTO `compare_detail` (`id`, `compare_id`, `fish_id`, `amount`) VALUES
 (5, 2, 2, '1'),
 (6, 2, 3, '1'),
 (7, 3, 1, '1'),
-(8, 4, 2, '1');
+(8, 4, 2, '1'),
+(9, 5, 1, '3'),
+(10, 5, 2, '1');
 
 -- --------------------------------------------------------
 
@@ -106,11 +107,11 @@ INSERT INTO `compare_detail` (`id`, `compare_id`, `fish_id`, `amount`) VALUES
 -- Table structure for table `container`
 --
 
-CREATE TABLE IF NOT EXISTS `container` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `container` (
+  `id` int(5) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `detail` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `container`
@@ -129,11 +130,11 @@ INSERT INTO `container` (`id`, `name`, `detail`) VALUES
 -- Table structure for table `feed`
 --
 
-CREATE TABLE IF NOT EXISTS `feed` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `feed` (
+  `id` int(5) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `detail` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `feed`
@@ -151,22 +152,22 @@ INSERT INTO `feed` (`id`, `name`, `detail`) VALUES
 -- Table structure for table `fish`
 --
 
-CREATE TABLE IF NOT EXISTS `fish` (
-  `id` int(5) unsigned NOT NULL,
-  `member_id` int(5) unsigned NOT NULL,
+CREATE TABLE `fish` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `member_id` int(5) UNSIGNED NOT NULL,
   `fullname` varchar(150) NOT NULL,
   `fullsize` varchar(5) NOT NULL,
   `fullage` varchar(5) NOT NULL,
-  `picture` varchar(32) NOT NULL,
+  `picture` varchar(36) NOT NULL,
   `detail` text NOT NULL,
   `believe` text NOT NULL,
-  `nature_id` int(5) unsigned NOT NULL,
-  `feed_id` int(5) unsigned NOT NULL,
-  `living_id` int(5) unsigned NOT NULL,
-  `container_id` int(5) unsigned NOT NULL,
+  `nature_id` int(5) UNSIGNED NOT NULL,
+  `feed_id` int(5) UNSIGNED NOT NULL,
+  `living_id` int(5) UNSIGNED NOT NULL,
+  `container_id` int(5) UNSIGNED NOT NULL,
   `date_create` varchar(10) NOT NULL,
   `date_modify` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `fish`
@@ -204,7 +205,7 @@ INSERT INTO `fish` (`id`, `member_id`, `fullname`, `fullsize`, `fullage`, `pictu
 (37, 1, 'ปลาหมอเเพนด้า (Panda Cichlid )', '20', '10', 'sadasd_.jpg', 'ปลาหมอเเพนด้า อาศัยอยู่ในน้ำจืดในประเทศบราซิล เเม่น้ำอเมซอนในส่วนของเเม่น้ำที่เป็นสีดำ (Black water)\r\nมีนิสัยไม่ดุร้าย ชอบอยู่รวมกันเป็นฝูง กินหนอน ปลาตัวเล็กๆเป็นอาหาร', 'ไม่พบ', 5, 3, 4, 5, '', '20/04/2016'),
 (38, 1, 'ปลาหมอนกแก้ว(นกเเก้ว เลิฟ)', '15', '5', 'fdfs_.jpg', 'ปลาหมอนกแก้ว (ชื่อวิทยาศาสตร์ Amphilophus citrinellum x Vieja synspila) เป็นพันธุ์ลูกผสมระหว่างปลาหมอฟลามิงโก้ และปลาหมอซินสไปลุ่ม มีปากคล้ายกับนกแก้ว กำเนิดในประเทศไต้หวัน ขนาดโตเต็มที่ 10 – 15 เซนติเมตร มีดวงตาโต ม่านตาใหญ่จนบางคราวดูไม่เหมือนทรงกลม เป็นวงรีหรือไม่ก็เป็นขีด ดำๆ หนาๆ พาด ผ่านตามแนวนอนของ ลูกตา ตู้ที่เหมาะสม ไม่ควรต่ำกว่า 30 นิ้ว เป็น ปลาที่ค่อนข้าง ก้าวร้าว อันที่จริง เป็นปลาที่ไม่ค่อยดุนัก และสามารถเลี้ยงรวมกับปลาอื่นที่ ขนาดเท่ากันได้ สามารถให้อาหารสำเร็จรูปและสัตว์น้ำขนาดเล็กเป็นอาหารได้\r\n', 'ไม่มี', 5, 2, 4, 1, '', '20/04/2016'),
 (39, 1, 'ปลากระดี่มุก(Osphronemidae)', '13', '3', 'dsds_.jpg', '            มีรูปร่างคล้ายปลากระดี่หม้อ (T. trichopterus) ซึ่งเป็นปลาที่อยู่ในสกุลเดียวกัน แต่กระดี่มุกมีลำตัวกว้างกว่าเล็กน้อย ครีบหลัง ครีบหาง และครีบก้นมีขนาดใหญ่และมีก้านครีบอ่อนยาวเป็นเส้นริ้ว ลำตัวสีเงินจาง มีแถบสีดำจางพาดยาวไปถึงโคนครีบหาง ท้องมีสีส้มหรือสีจาง และมีจุดกลมสีเงินมุกหรือสีฟ้าเหลือบกระจายไปทั่ว อันเป็นที่มาของชื่อสามัญ ครีบท้องเป็นสีส้มสดหรือสีเหลือง\r\n            เป็นปลาจำพวกปลากระดี่ที่พบในธรรมชาติได้น้อยที่สุดในประเทศไทย โดยจะพบในเฉพาะพื้นที่ภาคกลางและภาคใต้ตอนล่างเท่านั้น เเละนิยมเลี้ยงเป็นปลาตู้สวยงาม โดยเฉพาะในตู้ไม้น้ำ เป็นปลาที่สามารถเพาะพันธุ์ในสถานที่เลี้ยงได้ และมีการแข่งขันประกวดความสวยงามอีกด้วย', 'ไม่มี', 1, 2, 4, 2, '', '20/04/2016'),
-(40, 1, 'ปลาคู้แดง (ปลาฟันมนุษย์)', '80', '20', 'lllll_40.jpg', '           ปลาเปคูแดง เป็นปลาน้ำจืดชนิดหนึ่ง ในวงศ์ปลาคาราซิน (Characidae) วงศ์ย่อย Serrasalminae มีรูปร่างเหมือนกับปลาปิรันยาแดง (Pygocentrus nattereri) แต่ปลาคู้แดงมีขนาดลำตัวที่ใหญ่กว่า กรามล่างไม่ยื่นยาวออกมาและลักษณะของฟันไม่แหลมคมเหมือนกับปลาปิรันยาแดง เกล็ดมีขนาดเล็กละเอียด มีสีสันแวววาวเหมือนกับปลาปิรันยาแดง แต่ในส่วนของสีแดงไม่เข้มเท่า แต่ลูกปลาวัยอ่อนมีจุดกลมสีแดงเหมือนกัน และจุดเหล่านี้จะค่อย ๆ เล็กลงและหายไปเมื่อปลาโตขึ้น\r\n          ชอบอยู่รวมกันเป็นฝูง กินอาหารได้ทั้งพืชและสัตว์ โดยเฉพาะพืชเช่นเมล็ดพืชหรือลูกไม้ที่ร่วงหล่นจากต้น โดยจะไปรอกินถึงบริเวณผิวน้ำเลยทีเดียว ปลาคู้แดงเป็นปลาที่โตไว กินง่าย เลี้ยงง่าย ผสมพันธุ์ง่าย ', 'ไม่พบ', 2, 2, 4, 4, '', '20/04/2016');
+(40, 1, 'ปลาคู้แดง (ปลาฟันมนุษย์)', '80', '20', 'f3bbabdd012bbf70854437f489ea01d6', '           ปลาเปคูแดง เป็นปลาน้ำจืดชนิดหนึ่ง ในวงศ์ปลาคาราซิน (Characidae) วงศ์ย่อย Serrasalminae มีรูปร่างเหมือนกับปลาปิรันยาแดง (Pygocentrus nattereri) แต่ปลาคู้แดงมีขนาดลำตัวที่ใหญ่กว่า กรามล่างไม่ยื่นยาวออกมาและลักษณะของฟันไม่แหลมคมเหมือนกับปลาปิรันยาแดง เกล็ดมีขนาดเล็กละเอียด มีสีสันแวววาวเหมือนกับปลาปิรันยาแดง แต่ในส่วนของสีแดงไม่เข้มเท่า แต่ลูกปลาวัยอ่อนมีจุดกลมสีแดงเหมือนกัน และจุดเหล่านี้จะค่อย ๆ เล็กลงและหายไปเมื่อปลาโตขึ้น\r\n          ชอบอยู่รวมกันเป็นฝูง กินอาหารได้ทั้งพืชและสัตว์ โดยเฉพาะพืชเช่นเมล็ดพืชหรือลูกไม้ที่ร่วงหล่นจากต้น โดยจะไปรอกินถึงบริเวณผิวน้ำเลยทีเดียว ปลาคู้แดงเป็นปลาที่โตไว กินง่าย เลี้ยงง่าย ผสมพันธุ์ง่าย ', 'ไม่พบ', 2, 2, 4, 4, '', '15/05/2017');
 
 -- --------------------------------------------------------
 
@@ -212,11 +213,11 @@ INSERT INTO `fish` (`id`, `member_id`, `fullname`, `fullsize`, `fullage`, `pictu
 -- Table structure for table `living`
 --
 
-CREATE TABLE IF NOT EXISTS `living` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `living` (
+  `id` int(5) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `detail` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `living`
@@ -234,8 +235,8 @@ INSERT INTO `living` (`id`, `name`, `detail`) VALUES
 -- Table structure for table `member`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `member` (
+  `id` int(5) UNSIGNED NOT NULL,
   `title` enum('นาย.','นาง.','นางสาว.') NOT NULL DEFAULT 'นาย.',
   `fullname` varchar(150) NOT NULL,
   `birthdate` varchar(10) NOT NULL,
@@ -247,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `date_activity` varchar(19) NOT NULL,
   `picture` varchar(100) NOT NULL,
   `role` enum('admin','member') NOT NULL DEFAULT 'member'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
@@ -263,7 +264,7 @@ INSERT INTO `member` (`id`, `title`, `fullname`, `birthdate`, `address`, `email`
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
+CREATE TABLE `migrations` (
   `version` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -280,11 +281,11 @@ INSERT INTO `migrations` (`version`) VALUES
 -- Table structure for table `nature`
 --
 
-CREATE TABLE IF NOT EXISTS `nature` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `nature` (
+  `id` int(5) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `detail` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `nature`
@@ -303,8 +304,8 @@ INSERT INTO `nature` (`id`, `name`, `detail`) VALUES
 -- Table structure for table `pool`
 --
 
-CREATE TABLE IF NOT EXISTS `pool` (
-  `id` int(5) unsigned NOT NULL,
+CREATE TABLE `pool` (
+  `id` int(5) UNSIGNED NOT NULL,
   `shape` varchar(100) NOT NULL,
   `detail` text NOT NULL,
   `property` text NOT NULL,
@@ -320,22 +321,21 @@ CREATE TABLE IF NOT EXISTS `pool` (
 -- Table structure for table `webboard`
 --
 
-CREATE TABLE IF NOT EXISTS `webboard` (
-  `id` int(5) unsigned NOT NULL,
-  `posted_by` int(5) unsigned NOT NULL,
+CREATE TABLE `webboard` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `posted_by` int(5) UNSIGNED NOT NULL,
   `title` varchar(100) NOT NULL,
   `detail` text,
   `views` int(5) NOT NULL,
   `date_create` varchar(19) NOT NULL,
   `date_modify` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webboard`
 --
 
 INSERT INTO `webboard` (`id`, `posted_by`, `title`, `detail`, `views`, `date_create`, `date_modify`) VALUES
-(1, 1, 'ะำหะ', 'ๅ', 11, '20/04/2016 12:38:04', ''),
 (2, 1, 'ttt', 'tt', 10, '20/04/2016 12:38:57', '');
 
 -- --------------------------------------------------------
@@ -344,14 +344,14 @@ INSERT INTO `webboard` (`id`, `posted_by`, `title`, `detail`, `views`, `date_cre
 -- Table structure for table `webboard_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `webboard_comment` (
-  `id` int(5) unsigned NOT NULL,
-  `webboard_id` int(5) unsigned NOT NULL,
-  `commented_by` int(5) unsigned NOT NULL,
+CREATE TABLE `webboard_comment` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `webboard_id` int(5) UNSIGNED NOT NULL,
+  `commented_by` int(5) UNSIGNED NOT NULL,
   `detail` text,
   `date_create` varchar(19) NOT NULL,
   `date_modify` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webboard_comment`
@@ -444,62 +444,62 @@ ALTER TABLE `webboard_comment`
 -- AUTO_INCREMENT for table `compare`
 --
 ALTER TABLE `compare`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `compare_comment`
 --
 ALTER TABLE `compare_comment`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `compare_detail`
 --
 ALTER TABLE `compare_detail`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `container`
 --
 ALTER TABLE `container`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `feed`
 --
 ALTER TABLE `feed`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `fish`
 --
 ALTER TABLE `fish`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `living`
 --
 ALTER TABLE `living`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `nature`
 --
 ALTER TABLE `nature`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pool`
 --
 ALTER TABLE `pool`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `webboard`
 --
 ALTER TABLE `webboard`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `webboard_comment`
 --
 ALTER TABLE `webboard_comment`
-  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
