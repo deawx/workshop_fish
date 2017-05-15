@@ -12,7 +12,7 @@ class Compare extends MY_Controller {
       redirect('fish');
 
     foreach ($this->session->compare as $c) :
-      $this->db->or_where('f.id',$c);
+      $this->db->or_where('f.id',$c['id']);
     endforeach;
     $this->data['fish'] = $this->db
       ->select('fd.name as feed_name,l.name as living_name,f.*')
@@ -25,7 +25,7 @@ class Compare extends MY_Controller {
   function index()
   {
     foreach ($this->session->compare as $c) :
-      $this->db->or_where('f.id',$c);
+      $this->db->or_where('f.id',$c['id']);
     endforeach;
     $this->data['fish'] = $this->db
       ->select('fd.name as feed_name,l.name as living_name,f.*')
@@ -66,7 +66,7 @@ class Compare extends MY_Controller {
     if ($post) :
       if ( ! $this->session->is_login)
         return FALSE;
-        
+
       $amount = $post['amount'];
       unset($post['amount']);
       $this->db->insert('compare',$post);

@@ -91,12 +91,12 @@ class Fish extends MY_Controller {
       return FALSE;
 
     $compares = $this->session->userdata('compare');
-    if (in_array($id,$compares)) :
+    if (array_key_exists($id,$compares)) :
       unset($compares[$id]);
     elseif (count($compares) > 9) :
       $this->session->set_flashdata(array('class'=>'warning','value'=>'ไม่สามารถเพิ่มได้มากกว่า 10'));
     else:
-      $compares[$id] = $id;
+      $compares[$id] = $this->db->where('id',$id)->get('fish')->row_array();
     endif;
 
     $this->session->set_userdata('compare',$compares);

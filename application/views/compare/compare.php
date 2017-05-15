@@ -19,18 +19,19 @@ endforeach;
     <?=anchor('fish','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?>
   </div>
   <div class="col-sm-8">
-    <?php echo anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป &raquo',array('id'=>'btn-final','class'=>'btn btn-success btn-block')).hr(); ?>
+    <?php echo anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป &raquo',array('id'=>'btn-final','class'=>'btn btn-success btn-block')); ?>
   </div>
 </div>
+<?=hr();?>
 <?=heading('<u>รายการปลาที่เลือกทั้งหมด</u>','4');?>
 <div class="row">
   <?php foreach ($fish as $_f => $f) : ?>
     <div class="col-md-2 portfolio-item">
-      <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;'));?>
+      <?=anchor('fish/'.$f['id'],img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;')));?>
       <?=anchor('fish/compare/'.$f['id'],'ลบออกจากรายการ',array('class'=>'btn btn-warning btn-block'));?>
-      <?=heading(anchor('fish/'.$f['id'],$f['fullname']),'5');?>
-      <?=p('ขนาด '.$f['fullsize'].' เซ็นติเมตร');?>
-      <?=p('อายุ '.$f['fullage'].' ปี');?>
+      <!-- <?=heading(anchor('fish/'.$f['id'],$f['fullname']),'5');?> -->
+      <!-- <?=p('ขนาด '.$f['fullsize'].' เซ็นติเมตร');?> -->
+      <!-- <?=p('อายุ '.$f['fullage'].' ปี');?> -->
     </div>
   <?php endforeach; ?>
 </div>

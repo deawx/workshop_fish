@@ -31,7 +31,8 @@
     </div>
   </div>
   <div class="col-sm-4">
-    <?php if (in_array($fish['id'],$this->session->compare)) : ?>
+    <?=anchor($this->agent->referrer(),'ย้อนกลับ',array('class'=>'btn btn-default btn-block'));?>
+    <?php if (array_key_exists($fish['id'],$this->session->compare)) : ?>
       <?=anchor('fish/compare/'.$fish['id'],'ลบออกจากรายการเปรียบเทียบ',array('class'=>'btn btn-warning btn-block'));?>
     <?php else: ?>
       <?=anchor('fish/compare/'.$fish['id'],'เพิ่มในรายการเปรียบเทียบ',array('class'=>'btn btn-primary btn-block'));?>
