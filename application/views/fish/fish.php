@@ -1,4 +1,7 @@
 <div class="col-lg-3">
+  <?php if ($this->session->is_login && $this->session->role === 'admin') : ?>
+    <?php echo anchor('fish/create','เพิ่มข้อมูลปลาสวยงาม',array('class'=>'btn btn-primary btn-block')).br().hr();?>
+  <?php endif; ?>
   <?=heading('<u>หมวดหมู่</u>','4');?>
   <?=form_open(uri_string(),array('method'=>'get'));?>
     <div class="panel panel-default">
@@ -47,10 +50,6 @@
     </div>
   <?=form_submit('','ค้นหาข้อมูลที่เลือก',array('class'=>'btn btn-info btn-block'));?>
   <?=form_close();?>
-  <?php if ($this->session->is_login && $this->session->role == 'admin') : ?>
-    <br><p class="text-center">หรือ</p>
-    <?php anchor('fish/create','เพิ่มข้อมูลปลาสวยงาม',array('class'=>'btn btn-primary btn-block')).br().hr();?>
-  <?php endif; ?>
 </div>
 <div class="col-lg-9">
   <div class="row">

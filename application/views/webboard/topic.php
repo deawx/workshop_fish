@@ -1,7 +1,7 @@
 <?php
 $heading = isset($topic) ? 'แก้ไขหัวข้อ' : 'เริ่มหัวข้อใหม่';
 $hidden = isset($topic) ? array('id'=>$topic['id']) : array('posted_by'=>$this->session->id,'date_create'=>date('d/m/Y H:i:s'));
-$title = isset($topic) ? $topic['detail'] : '';
+$title = isset($topic) ? $topic['title'] : '';
 $detail = isset($topic) ? $topic['detail'] : '';
 $id = isset($topic) ? $topic['id'] : '';
 $form = [

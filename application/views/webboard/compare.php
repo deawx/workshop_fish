@@ -6,7 +6,10 @@
       <?=heading($compare['pool_title'],'3',array('class'=>'panel-title')).$delete.$edit;?>
     </div>
     <div class="panel-body">
-      <p>เมื่อ <?=$compare['date_create'].nbs(5).'โดย '.anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']).'</p>';?>
+      <p>
+        เมื่อ <?=$compare['date_create'].nbs(5);?>
+        โดย <?=(isset($member_id['id'])) ? anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']) : 'บุคคลทั่วไป';?>
+       </p>
       <?=heading('<u>รายการปลาทั้งหมด</u>','4');?>
       <div class="col-sm-12">
         <?php foreach ($compare_detil as $c) : ?>
@@ -95,7 +98,7 @@
         <?=character_limiter($n['pool_detail'],'150');?>
       </div>
       <div class="panel-footer">
-        <span>ผู้ประกาศ <?=anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']);?></span>
+        <span>ผู้ประกาศ <?=(isset($member_id['id'])) ? anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']) : 'บุคคลทั่วไป';?></span>
         <?=nbs(5).'<span class="label label-info">ผู้ตอบ '.$comments.'</span>';?>
         <?=nbs(5).'<span class="label label-info">ผู้อ่าน '.$n['views'].'</span>';?>
       </div>

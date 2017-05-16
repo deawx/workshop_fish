@@ -5,7 +5,7 @@
   <ul>
     <li>
       <?=anchor('webboard/compare/'.$n['id'],character_limiter($n['pool_title'],'100')).br();?>
-      <span>ผู้ประกาศ <?=anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']);?></span>
+      <span>ผู้ประกาศ <?=(isset($posted_by['id'])) ? anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']) : 'บุคคลทั่วไป';?></span>
       <?=nbs(5).'<span class="label label-info">ผู้ตอบ '.$comments.'</span>';?>
       <?=nbs(5).'<span class="label label-info">ผู้อ่าน '.$n['views'].'</span>'.hr();?>
     </li>

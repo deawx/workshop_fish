@@ -119,6 +119,7 @@ class Webboard extends MY_Controller {
   function delete($id)
   {
     $this->db->delete('webboard',array('id'=>$id));
+    $this->db->delete('webboard_comment',array('webboard_id'=>$id));
     $this->session->set_flashdata(['class'=>'success','value'=>'ลบหัวข้อเรียบร้อยแล้ว']);
     redirect('webboard');
   }
@@ -133,6 +134,7 @@ class Webboard extends MY_Controller {
   function delete_compare($id)
   {
     $this->db->delete('compare',array('id'=>$id));
+    $this->db->delete('compare_comment',array('compare_id'=>$id));
     $this->session->set_flashdata(['class'=>'success','value'=>'ลบหัวข้อเรียบร้อยแล้ว']);
     redirect('webboard');
   }
