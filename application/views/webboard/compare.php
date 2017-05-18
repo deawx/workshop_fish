@@ -1,5 +1,5 @@
 <?php if ($this->uri->segment(3) > 0) : ?>
-  <?php $edit = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/post/'.$compare['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
+  <?php $edit = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/compare_edit/'.$compare['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
   <?php $delete = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/delete_compare/'.$compare['id'],'ลบ',array('class'=>'btn btn-danger pull-right','onclick'=>"return confirm('ต้องการลบหัวข้อนี้?');")) :'';?>
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -7,7 +7,8 @@
     </div>
     <div class="panel-body">
       <p>
-        เมื่อ <?=$compare['date_create'].nbs(5);?>
+        โพสต์เมื่อ <?=$compare['date_create'].' : ';?>
+        แก้ไขเมื่อ <?=$compare["date_modify"].' : ';?>
         โดย <?=(isset($member_id['id'])) ? anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']) : 'บุคคลทั่วไป';?>
        </p>
       <?=heading('<u>รายการปลาทั้งหมด</u>','4');?>
@@ -24,15 +25,14 @@
       <div class="col-sm-12">
         <br/><hr/>
         <?=heading('<u>หัวข้อ</u> '.$compare['pool_title'],'4');?>
+        <?=p('<u>ชนิดของปลาที่เลี้ยง(จำนวน)</u>');?>
+        <p style="text-indent:40px;line-height:1.8em;"><?=$compare['fish_amount'];?> ชนิด</p>
         <?=br();?>
         <?=p('<u>รายละเอียดบ่อปลา</u>');?>
         <p style="text-indent:40px;line-height:1.8em;"><?=$compare['pool_detail'];?></p>
         <?=br();?>
         <?=p('<u>ข้อมูลทางความเชื่อ</u>');?>
         <p style="text-indent:40px;line-height:1.8em;"><?=$compare['pool_believe'];?></p>
-        <?=br();?>
-        <?=p('<u>จำนวนปลาทั้งหมด</u>');?>
-        <p style="text-indent:40px;line-height:1.8em;"><?=$compare['fish_amount'];?></p>
         <?=br();?>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <?php $commented_by = $this->db->get_where('member',array('id'=>$n['commented_by']))->row_array(); ?>
         <div class="panel-heading">
           <?=($this->session->id === $commented_by['id']) ? anchor('webboard/delete_compare_comment/'.$n['id'],'ลบ',array('class'=>'btn btn-warning pull-right','onclick'=>"return confirm('ลบคอมเม้นต์นี้ ?');")) : '';?>
-          <?=heading("เมื่อ ".$n["date_create"].nbs(5)."โดย ".anchor_popup("member/profile/".$commented_by["id"],$commented_by["fullname"]),'4',array('class'=>'panel-pool_title'));?>
+          <?=heading("โพสต์เมื่อ ".$n["date_create"].' : '.'แก้ไขเมื่อ '.$n["date_modify"].' : '."โดย ".anchor_popup("member/profile/".$commented_by["id"],$commented_by["fullname"]),'4',array('class'=>'panel-pool_title'));?>
         </div>
         <div class="panel-body">
           <?=$n['detail'];?>
@@ -60,7 +60,7 @@
       <div class="form-group">
         <?=form_label(ucfirst('เนื้อหา'),'detail',['class'=>'control-label text-right col-sm-3']);?>
         <div class="col-sm-9">
-          <?=form_textarea(['name'=>'detail','class'=>'form-control ckeditor','required'=>TRUE]);?>
+          <?=form_textarea(['name'=>'detail','class'=>'form-control','required'=>TRUE]);?>
         </div>
       </div>
       <div class="form-group">
@@ -98,6 +98,8 @@
         <?=character_limiter($n['pool_detail'],'150');?>
       </div>
       <div class="panel-footer">
+        <span>โพสต์เมื่อ <?=$n['date_create'];?> : </span>
+        <span>แก้ไขเมื่อ <?=$n['date_modify'];?> : </span>
         <span>ผู้ประกาศ <?=(isset($member_id['id'])) ? anchor_popup('member/profile/'.$member_id['id'],$member_id['fullname']) : 'บุคคลทั่วไป';?></span>
         <?=nbs(5).'<span class="label label-info">ผู้ตอบ '.$comments.'</span>';?>
         <?=nbs(5).'<span class="label label-info">ผู้อ่าน '.$n['views'].'</span>';?>
@@ -105,5 +107,4 @@
     </div>
   <?php endforeach; ?>
   <div class="pull-right"><?=$this->pagination->create_links();?></div>
-
 <?php endif; ?>

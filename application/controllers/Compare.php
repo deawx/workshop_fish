@@ -76,7 +76,7 @@ class Compare extends MY_Controller {
       endforeach;
       $this->session->unset_userdata('compare');
       $this->session->set_flashdata(array('class'=>'success','value'=>'บันทึกการเปรียบเทียบข้อมูลปลาเรียบร้อยแล้ว'));
-      redirect('fish');
+      redirect('webboard/compare/'.$compare_id);
     endif;
 
     $this->data['id'] = $id;

@@ -6,7 +6,7 @@
       <?=heading($forum['title'],'3',array('class'=>'panel-title')).$delete.$edit;?>
     </div>
     <div class="panel-body">
-      <p>เมื่อ <?=$forum['date_create'].nbs(5).'โดย '.anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']).'</p>';?>
+      <p>เมื่อ <?=$forum['date_create'].' : '.'แก้ไขเมื่อ '.$forum['date_modify'].' : '.'โดย '.anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']).'</p>';?>
       <p><?=$forum['detail'].'</p>';?>
     </div>
   </div>
@@ -16,7 +16,7 @@
         <?php $commented_by = $this->db->get_where('member',array('id'=>$n['commented_by']))->row_array(); ?>
         <div class="panel-heading">
           <?=($this->session->id === $commented_by['id']) ? anchor('webboard/delete_comment/'.$n['id'],'ลบ',array('class'=>'btn btn-warning pull-right','onclick'=>"return confirm('ลบคอมเม้นต์นี้ ?');")) : '';?>
-          <?=heading("เมื่อ ".$n["date_create"].nbs(5)."โดย ".anchor_popup("member/profile/".$commented_by["id"],$commented_by["fullname"]),'4',array('class'=>'panel-title'));?>
+          <?=heading("โพสต์มื่อ ".$n["date_create"].' : '.'แก้ไขเมื่อ '.$n['date_modify'].' : '."โดย ".anchor_popup("member/profile/".$commented_by["id"],$commented_by["fullname"]),'4',array('class'=>'panel-title'));?>
         </div>
         <div class="panel-body">
           <?=$n['detail'];?>
@@ -33,7 +33,7 @@
       <div class="form-group">
         <?=form_label(ucfirst('เนื้อหา'),'detail',['class'=>'control-label text-right col-sm-3']);?>
         <div class="col-sm-9">
-          <?=form_textarea(['name'=>'detail','class'=>'form-control ckeditor','required'=>TRUE]);?>
+          <?=form_textarea(['name'=>'detail','class'=>'form-control','required'=>TRUE]);?>
         </div>
       </div>
       <div class="form-group">
@@ -74,6 +74,8 @@
         <?=character_limiter($n['detail'],'150');?>
       </div>
       <div class="panel-footer">
+        <span>โพสต์เมื่อ <?=$n['date_create'];?> : </span>
+        <span>แก้ไขเมื่อ <?=$n['date_modify'];?> : </span>
         <span>ผู้ถาม <?=anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']);?></span>
         <?=nbs(5).'<span class="label label-info">ผู้ตอบ '.$comments.'</span>';?>
         <?=nbs(5).'<span class="label label-info">ผู้อ่าน '.$n['views'].'</span>';?>

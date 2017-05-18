@@ -1,15 +1,17 @@
 <?php
-$heading = isset($topic) ? 'แก้ไขหัวข้อ' : 'เริ่มหัวข้อใหม่';
-$hidden = isset($topic) ? array('id'=>$topic['id']) : array('posted_by'=>$this->session->id,'date_create'=>date('d/m/Y H:i:s'));
 $title = isset($topic) ? $topic['title'] : '';
 $detail = isset($topic) ? $topic['detail'] : '';
 $id = isset($topic) ? $topic['id'] : '';
+
+$heading = isset($topic) ? 'แก้ไขหัวข้อ '.$title : 'เริ่มหัวข้อใหม่';
+$hidden = isset($topic) ? array('id'=>$topic['id']) : array('posted_by'=>$this->session->id,'date_create'=>date('d/m/Y H:i:s'));
+
 $form = [
   ['label'=>form_label(ucfirst('หัวข้อ'),'title',['class'=>'control-label text-right col-sm-3']),
   'input'=>form_input(['name'=>'title','class'=>'form-control','required'=>TRUE],set_value('title',$title)),
   'help'=>''],
   ['label'=>form_label(ucfirst('เนื้อหา'),'detail',['class'=>'control-label text-right col-sm-3']),
-  'input'=>form_textarea(['name'=>'detail','class'=>'form-control ckeditor','required'=>TRUE,'value'=>$detail]),
+  'input'=>form_textarea(['name'=>'detail','class'=>'form-control','required'=>TRUE,'value'=>$detail]),
   'help'=>'']
 ];
 ?>

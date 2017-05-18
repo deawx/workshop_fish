@@ -56,6 +56,29 @@ class Webboard extends MY_Controller {
     $this->load->view('_layout_main', $this->data);
   }
 
+  function compare_edit($id)
+  {
+    if ( ! $this->session->is_login)
+      redirect('webboard');
+
+    $post = $this->input->post();
+    if ($post) :
+      $post['date_modify'] = date('');
+      $save = $this->db->set($post)->where('id',$id)->update('compare');
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'บันทึกข้อมูลเรียบร้อยแล้ว'));
+        redirect('webboard/compare/'.$id);
+      endif;
+    endif;
+
+    if ((int)$id > 0) :
+      $this->data['topic'] = $this->db->where('id',$id)->get('compare')->row_array();
+    endif;
+
+    $this->data['content'] = $this->load->view('webboard/compare_edit',$this->data,TRUE);
+    $this->load->view('_layout_main', $this->data);
+  }
+
   function forum($id='')
   {
     if ((int)$id > 0) :
