@@ -31,8 +31,8 @@ class Main extends MY_Controller {
 
   function about()
   {
-    $this->data['about'] = '';
-    $this->data['content'] = $this->load->view('about', $this->data['about'], TRUE);
+    $about = $this->db->get('contact')->row_array();
+    $this->data['content'] = $this->load->view('about', $about, TRUE);
     $this->load->view('_layout_main', $this->data);
   }
 
