@@ -11,7 +11,7 @@ $form = [
   'input'=>form_input(['name'=>'title','class'=>'form-control','required'=>TRUE],set_value('title',$title)),
   'help'=>''],
   ['label'=>form_label(ucfirst('เนื้อหา'),'detail',['class'=>'control-label text-right col-sm-3']),
-  'input'=>form_textarea(['name'=>'detail','class'=>'form-control','required'=>TRUE,'value'=>$detail]),
+  'input'=>form_textarea(['name'=>'detail','class'=>'form-control ckeditor','required'=>TRUE,'value'=>$detail]),
   'help'=>'']
 ];
 ?>
