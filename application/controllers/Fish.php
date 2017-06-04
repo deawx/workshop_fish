@@ -15,6 +15,10 @@ class Fish extends MY_Controller {
   function index($id='')
   {
     if ((int)$id > 0) :
+
+      if ($this->agent->referrer() !== site_url(uri_string()))
+        $this->session->set_userdata('lastpage',$this->agent->referrer());
+
       $this->data['fish'] = $this->db->where('id',$id)->get('fish')->row_array();
       $this->data['nature'] = $this->db->where('id',$this->data['fish']['nature_id'])->get('nature')->row_array();
       $this->data['feed'] = $this->db->where('id',$this->data['fish']['feed_id'])->get('feed')->row_array();
@@ -100,6 +104,7 @@ class Fish extends MY_Controller {
     endif;
 
     $this->session->set_userdata('compare',$compares);
+
     redirect($this->agent->referrer());
   }
 

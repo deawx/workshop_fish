@@ -75,7 +75,7 @@ class Compare extends MY_Controller {
         $this->db->insert('compare_detail',array('compare_id'=>$compare_id,'fish_id'=>$f['id'],'amount'=>$amount[$f['id']]));
       endforeach;
       $this->session->unset_userdata('compare');
-      $this->session->set_flashdata(array('class'=>'success','value'=>'บันทึกการเปรียบเทียบข้อมูลปลาเรียบร้อยแล้ว'));
+      $this->session->set_flashdata(array('class'=>'success','value'=>'ข้อมูลการทดสอบปลาสวยงามของท่านได้ถูกบันทึกไว้บนบอร์ดแล้ว'));
       redirect('webboard/compare/'.$compare_id);
     endif;
 

@@ -31,7 +31,8 @@
     </div>
   </div>
   <div class="col-sm-4">
-    <?=anchor($this->agent->referrer(),'ย้อนกลับ',array('class'=>'btn btn-default btn-block'));?>
+    <?php $lastpage = ($this->session->has_userdata('lastpage')) ? $this->session->lastpage : $this->agent->referrer(); ?>
+    <?=anchor($lastpage,'ย้อนกลับ',array('class'=>'btn btn-default btn-block'));?>
     <?php if (array_key_exists($fish['id'],$this->session->compare)) : ?>
       <?=anchor('fish/compare/'.$fish['id'],'ลบออกจากรายการเปรียบเทียบ',array('class'=>'btn btn-warning btn-block'));?>
     <?php else: ?>
@@ -47,7 +48,7 @@
     <?=br(2).hr();?>
     <div class="col-sm-12">
       <ul class="list-group">
-        <li class="list-group-item active">ข้อมูลที่น่าสนใจอื่นๆ</li>
+        <li class="list-group-item active">รารยการปลาที่น่าสนใจอื่นๆ</li>
         <?php foreach ($related as $r) : ?>
           <li class="list-group-item">
               <?=img('assets/fish/'.$r['picture'],'',array('class'=>'img-responsive','style'=>'width:300%;height:200px;'));?>

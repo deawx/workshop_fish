@@ -103,9 +103,6 @@ class Member extends MY_Controller {
 
   function signout()
   {
-    if ( ! $this->session->is_login)
-      return FALSE;
-
     $this->session->sess_destroy();
     redirect('main');
   }
