@@ -220,11 +220,10 @@ class Member_model extends MY_Model {
     if ( ! $id)
       return FALSE;
 
-    $id = intval($id);
-    if ($id < 2)
+    if (intval($id) === '1')
       return FALSE;
 
-    return $this->remove($id);
+    return $this->db->where('id',$id)->delete('member');
   }
 
 }

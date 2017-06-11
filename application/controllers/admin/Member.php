@@ -59,7 +59,7 @@ class Member extends Admin_Controller {
 
 	function delete($id)
 	{
-		$remove = $this->member->remove($id);
+		$remove = $this->member->delete($id);
 		if ($remove !== FALSE)
 			$this->session->set_flashdata(array('class'=>'success','value'=>'ลบข้อมูลเสร็จสิ้น'));
 
