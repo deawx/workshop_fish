@@ -26,4 +26,10 @@
     <?=script_tag('assets/js/toast.min.js');?>
     <?=script_tag('assets/js/common.js');?>
 
+    <?=script_tag('assets/js/scrolls.js');?>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      scroller.init();
+    });
+    </script>
 </head>

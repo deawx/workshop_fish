@@ -32,11 +32,11 @@
           <li><?=anchor('admin/config/about','ข้อมูลการติดต่อ');?></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><?=anchor('','<i class="fa fa-long-arrow-right fa-lg"></i>');?></li>
+          <li><?=anchor('','กลับหน้าหลัก');?></li>
         </ul>
       <?php elseif (in_array('member',$this->uri->segment_array())): ?>
         <ul class="nav navbar-nav navbar-right">
-          <li><?=anchor('','<i class="fa fa-long-arrow-right fa-lg"></i>');?></li>
+          <li><?=anchor('','กลับหน้าหลัก');?></li>
         </ul>
       <?php else: ?>
         <ul class="nav navbar-nav">

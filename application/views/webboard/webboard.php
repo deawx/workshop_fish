@@ -21,7 +21,7 @@
   <ul>
     <li>
       <?=anchor('webboard/forum/'.$n['id'],character_limiter($n['title'],'100')).br();?>
-      <p><?=character_limiter($n['detail'],'50');?></p><br/>
+      <p><?=character_limiter(strip_tags($n['detail'],'50'));?></p><br/>
       <span>โพสต์เมื่อ <?=$n['date_create'];?> : </span>
       <span>แก้ไขเมื่อ <?=$n['date_modify'];?> : </span>
       <span>ผู้ถาม <?=anchor_popup('member/profile/'.$posted_by['id'],$posted_by['fullname']);?></span>

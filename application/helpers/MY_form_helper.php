@@ -79,9 +79,9 @@ if ( ! function_exists('dropdown_title'))
   function dropdown_title()
   {
     $title = array(
-      'นาย.' => 'นาย.',
-      'นาง.' => 'นาง.',
-      'นางสาว.' => 'นางสาว.'
+      'นาย' => 'นาย',
+      'นาง' => 'นาง',
+      'นางสาว' => 'นางสาว'
     );
     return $title;
   }

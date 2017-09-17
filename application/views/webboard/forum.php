@@ -1,6 +1,9 @@
 <?php if ((int)$this->uri->segment(3) > 0) : ?>
   <?php $edit = ($this->session->id == $forum['posted_by'] || $this->session->role == 'admin') ? anchor('webboard/post/'.$forum['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
   <?php $delete = ($this->session->id == $forum['posted_by'] || $this->session->role == 'admin') ? anchor('webboard/delete/'.$forum['id'],'ลบ',array('class'=>'btn btn-danger pull-right','onclick'=>"return confirm('ต้องการลบหัวข้อนี้?');")) :'';?>
+
+  <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'window.history.back()'));?>
+
   <div class="panel panel-success">
     <div class="panel-heading">
       <?=heading($forum['title'],'3',array('class'=>'panel-title')).$delete.$edit;?>
@@ -15,7 +18,7 @@
         <div class="panel panel-info">
         <?php $commented_by = $this->db->get_where('member',array('id'=>$n['commented_by']))->row_array(); ?>
         <div class="panel-heading">
-          <?=($this->session->id === $commented_by['id']) ? anchor('webboard/delete_comment/'.$n['id'],'ลบ',array('class'=>'btn btn-warning pull-right','onclick'=>"return confirm('ลบคอมเม้นต์นี้ ?');")) : '';?>
+          <?=($this->session->role === 'admin' OR $this->session->id === $commented_by['id']) ? anchor('webboard/delete_comment/'.$n['id'],'ลบ',array('class'=>'btn btn-warning pull-right','onclick'=>"return confirm('ลบคอมเม้นต์นี้ ?');")) : '';?>
           <?=heading("โพสต์มื่อ ".$n["date_create"].' : '.'แก้ไขเมื่อ '.$n['date_modify'].' : '."โดย ".anchor_popup("member/profile/".$commented_by["id"],$commented_by["fullname"]),'4',array('class'=>'panel-title'));?>
         </div>
         <div class="panel-body">
@@ -49,14 +52,23 @@
 
 <?php else: ?>
 
-  <?=form_open('',['method'=>'get']);?>
-  <div class="input-group">
-    <?=form_input(['name'=>'search','class'=>'form-control']);?>
-    <div class="input-group-addon">
-      <?=form_submit('','ค้นหา');?>
-    </div>
+<div class="col-md-12">
+  <div class="col-md-3">
+    <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'window.history.back()'));?>
   </div>
-  <?=form_close().hr();?>
+  <div class="col-md-9">
+    <?=form_open('',['method'=>'get']);?>
+    <div class="input-group">
+      <?=form_input(['name'=>'search','class'=>'form-control']);?>
+      <div class="input-group-addon">
+        <?=form_submit('','ค้นหา');?>
+      </div>
+    </div>
+    <?=form_close();?>
+  </div>
+</div>
+<div class="col-md-12">
+  <hr>
   <?=($this->session->is_login && $this->session->role == 'admin') ? anchor('webboard/post','เริ่มหัวข้อใหม่',['class'=>'btn btn-primary pull-right']) : '';?>
   <?=heading('เว็บบอร์ดพี่น้องผู้นิยมการเลี้ยงปลาตามความเชื่อต่างๆ','4').hr();?>
   <?php foreach ($forum as $n) : ?>
@@ -83,5 +95,6 @@
     </div>
   <?php endforeach; ?>
   <div class="pull-right"><?=$this->pagination->create_links();?></div>
+</div>
 
 <?php endif; ?>
