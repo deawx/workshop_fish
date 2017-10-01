@@ -12,7 +12,7 @@ class Fish extends Admin_Controller {
 
   function index()
   {
-    $this->table->set_heading(array('#','ชื่อเต็ม','ขนาดตัวเต็มวัย','อายุเฉลี่ย',''));
+    $this->table->set_heading(array('','ชื่อเต็ม','ขนาดตัวเต็มวัย','อายุเฉลี่ย',''));
     $tables = $this->fish->search()->result_array();
     foreach ($tables as $_t => $t) :
       $this->table->add_row(
@@ -152,6 +152,34 @@ class Fish extends Admin_Controller {
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
     $this->data['content'] .= heading('รายการข้อมูลภาชนะการเลี้ยงที่เหมาะสม','4').hr().br().$this->table->generate();
+    $this->load->view('_layout_main',$this->data);
+  }
+
+  function halo($id='')
+  {
+    $post = $this->input->post();
+    if ($post) :
+      $save = $this->fish->fish_halo($id,$post);
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
+        redirect('admin/fish/halo');
+      endif;
+    endif;
+
+    $this->data['content'] = $this->fish->fish_halo($id);
+    $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
+    $tables = $this->db->get('halo')->result_array();
+    foreach ($tables as $_t => $t) :
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/halo_'.$t['id']);
+      $this->table->add_row(
+        ++$_t,
+        $t['name'],
+        $t['detail'],
+        form_anchor_edit('admin/fish/halo/'.$t['id']).$delete
+      );
+    endforeach;
+    $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
+    $this->data['content'] .= heading('รายการข้อมูลการเสริมบารมี','4').hr().br().$this->table->generate();
     $this->load->view('_layout_main',$this->data);
   }
 

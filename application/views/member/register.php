@@ -27,6 +27,12 @@
       <?=form_password(['name'=>'password','class'=>'form-control','required'=>TRUE]);?>
     </div>
   </div>
+  <div class="form-group">
+    <?=form_label('รหัสผ่าน(ยืนยัน)','password_confirm',['class'=>'control-label text-right col-sm-3']);?>
+    <div class="col-sm-9">
+      <?=form_password(['name'=>'password_confirm','class'=>'form-control','required'=>TRUE]);?>
+    </div>
+  </div>
   <br/>
   <div class="form-group">
     <div class="col-sm-offset-3">

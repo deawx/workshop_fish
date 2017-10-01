@@ -33,6 +33,7 @@ endif;
 ?>
 <?=form_open_multipart(uri_string(),array('class'=>'form-horizontal'),array('id'=>$id,'re_email'=>$email));?>
   <?=heading('แก้ไขข้อมูล','4').hr();?>
+  <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'window.history.back()'));?>
   <?php foreach ($form as $_f => $f) : ?>
     <div class="form-group">
       <?=$f['label'];?>

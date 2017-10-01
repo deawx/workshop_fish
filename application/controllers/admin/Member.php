@@ -12,7 +12,7 @@ class Member extends Admin_Controller {
 
 	public function index()
 	{
-		$this->table->set_heading(array('#','ชื่อ - นามสกุล','วันที่สมัคร',''));
+		$this->table->set_heading(array('','ชื่อ - นามสกุล','วันที่สมัคร',''));
 		$tables = $this->member->search(array('role'=>'member'))->result_array();
 		foreach ($tables as $_t => $t) :
 			$this->table->add_row(

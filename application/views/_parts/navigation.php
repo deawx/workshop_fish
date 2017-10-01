@@ -26,6 +26,7 @@
               <li><?=anchor('admin/fish/feed','บันทึกข้อมูลการกินอาหาร');?></li>
               <li><?=anchor('admin/fish/living','บันทึกข้อมูลการอยู่อาศัย');?></li>
               <li><?=anchor('admin/fish/container','บันทึกข้อมูลสภาพแวดล้อมที่เหมาะสม');?></li>
+              <li><?=anchor('admin/fish/halo','บันทึกข้อมูลการเสริมบารมี');?></li>
               <li><?=anchor('admin/fish','รายการข้อมูลปลาสวยงาม');?></li>
             </ul>
           </li>
@@ -41,9 +42,9 @@
       <?php else: ?>
         <ul class="nav navbar-nav">
           <li><?=anchor('','หน้าหลัก');?></li>
-          <li class="<?=(in_array('fish',$this->uri->segment_array()))?'active':'';?>"><?=anchor('fish','ข้อมูลปลาสวยงาม');?></li>
-          <li class="<?=(in_array('webboard',$this->uri->segment_array()))?'active':'';?>"><?=anchor('webboard','เว็บบอร์ด');?></li>
-          <li class="<?=(in_array('about',$this->uri->segment_array()))?'active':'';?>"><?=anchor('main/about','เกี่ยวกับเรา');?></li>
+          <li class="<?=(in_array('fish',$this->uri->segment_array()))?'active':'';?>"><?=anchor('fish','รายการปลาสวยงามน้ำจืด');?></li>
+          <li class="<?=(in_array('webboard',$this->uri->segment_array()))?'active':'';?>"><?=anchor('webboard','เว็บบอร์ดให้ความรู้ปลาสวยงาม');?></li>
+          <li class="<?=(in_array('about',$this->uri->segment_array()))?'active':'';?>"><?=anchor('main/about','ติดต่อเรา');?></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <?php if ($this->session->userdata('is_login')) : ?>

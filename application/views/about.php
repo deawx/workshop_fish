@@ -25,9 +25,9 @@
       <?=$address;?>
     </address>
     <address>
-      <abbr title="Phone">โทรศัพท์ : </abbr><?=$phone;?>
+      โทรศัพท์ : <?=$phone;?>
       <br>
-      <abbr title="Email">อีเมล์ : </abbr><?=$email;?>
+      อีเมล์ : <?=$email;?>
     </address>
   </div>
 </div>

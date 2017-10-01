@@ -15,12 +15,8 @@ foreach ($fish as $_f => $f) :
 endforeach;
 ?>
 <div class="row">
-  <div class="col-sm-4">
-    <?=anchor('fish','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?>
-  </div>
-  <div class="col-sm-8">
-    <?php echo anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป &raquo',array('id'=>'btn-final','class'=>'btn btn-success btn-block')); ?>
-  </div>
+  <div class="col-sm-4"> <?=anchor('fish','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?> </div>
+  <div class="col-sm-8"> <?php echo anchor('compare/compare_pool','เข้าสู่ขั้นตอนต่อไป &raquo',array('id'=>'btn-final','class'=>'btn btn-success btn-block')); ?> </div>
 </div>
 <?=hr();?>
 <?=heading('<u>รายการปลาที่เลือกทั้งหมด</u>','4');?>
@@ -29,9 +25,6 @@ endforeach;
     <div class="col-md-2 portfolio-item">
       <?=anchor('fish/'.$f['id'],img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;')));?>
       <?=anchor('fish/compare/'.$f['id'],'ลบออกจากรายการ',array('class'=>'btn btn-warning btn-block'));?>
-      <!-- <?=heading(anchor('fish/'.$f['id'],$f['fullname']),'5');?> -->
-      <!-- <?=p('ขนาด '.$f['fullsize'].' เซ็นติเมตร');?> -->
-      <!-- <?=p('อายุ '.$f['fullage'].' ปี');?> -->
     </div>
   <?php endforeach; ?>
 </div>
@@ -142,9 +135,6 @@ endforeach;
 <script type="text/javascript">
 $(document).ready(function(){
   alert = $('.alert').html();
-  if (alert) {
-    $('#btn-final').attr('onclick',"return confirm('พบรายการแจ้งเตือน! ท่านต้องการเข้าสู่ขั้นตอนต่อไปหรือไม่?');");
-    // $('#btn-final').removeAttr('href');
-  }
+  if (alert) { $('#btn-final').attr('onclick',"return confirm('พบรายการแจ้งเตือน! ท่านต้องการเข้าสู่ขั้นตอนต่อไปหรือไม่?');"); }
 });
 </script>

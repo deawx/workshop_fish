@@ -14,7 +14,7 @@ class Compare extends MY_Controller {
     foreach ($this->session->compare as $c) :
       $this->db->or_where('f.id',$c['id']);
     endforeach;
-    $this->data['fish'] = $this->db
+    $this->data['all_fish'] = $this->db
       ->select('fd.name as feed_name,l.name as living_name,f.*')
       ->join('feed as fd','fd.id = f.feed_id')
       ->join('living as l','l.id = f.living_id')
@@ -33,6 +33,22 @@ class Compare extends MY_Controller {
       ->join('living as l','l.id = f.living_id')
       ->get('fish as f')
       ->result_array();
+      
+    $post = $this->input->post();
+    if ($post) :
+      $amount = $post['amount'];
+      unset($post['amount']);
+      $this->db->insert('compare',$post);
+      $compare_id = $this->db->insert_id();
+      foreach ($this->data['fish'] as $f) :
+        $this->db->insert('compare_detail',array('compare_id'=>$compare_id,'fish_id'=>$f['id'],'amount'=>$amount[$f['id']]));
+      endforeach;
+      $this->session->unset_userdata('compare');
+      $this->session->set_flashdata(array('class'=>'success','value'=>'ข้อมูลการทดสอบปลาสวยงามของท่านได้ถูกบันทึกไว้บนบอร์ดแล้ว'));
+      redirect('webboard/compare/'.$compare_id);
+    endif;
+
+
     $nt = array();
     $fd = array();
     $lv = array();
@@ -64,14 +80,11 @@ class Compare extends MY_Controller {
   {
     $post = $this->input->post();
     if ($post) :
-      // if ( ! $this->session->is_login)
-      //   return FALSE;
-
       $amount = $post['amount'];
       unset($post['amount']);
       $this->db->insert('compare',$post);
       $compare_id = $this->db->insert_id();
-      foreach ($this->data['fish'] as $f) :
+      foreach ($this->data['all_fish'] as $f) :
         $this->db->insert('compare_detail',array('compare_id'=>$compare_id,'fish_id'=>$f['id'],'amount'=>$amount[$f['id']]));
       endforeach;
       $this->session->unset_userdata('compare');
@@ -79,9 +92,26 @@ class Compare extends MY_Controller {
       redirect('webboard/compare/'.$compare_id);
     endif;
 
+    $config	= array(
+      'base_url' => site_url('compare/compare_pool'),
+      'total_rows' => count($this->session->compare),
+      'per_page' => '1'
+    );
+    $offset = ($this->input->get('p') > 0) ? $this->input->get('p') : '0';
+    $this->pagination->initialize($config);
+
+    $this->data['fish'] = $this->db
+      ->select('fd.name as feed_name,l.name as living_name,f.*')
+      ->join('feed as fd','fd.id = f.feed_id')
+      ->join('living as l','l.id = f.living_id')
+      ->limit($config['per_page'])
+      ->offset($offset)
+      ->get('fish as f')
+      ->result_array();
+
     $this->data['id'] = $id;
     $this->data['compare'] = $this->db->get_where('compare',array('id'=>$id))->row_array();
-    $this->data['compare_detail'] = $this->db->get_where('compare_detail',array('compare_id'=>'$id'))->result_array();
+    $this->data['compare_detail'] = $this->db->get_where('compare_detail',array('compare_id'=>$id))->result_array();
 
     $this->data['content'] = $this->load->view('compare/compare_pool',$this->data,TRUE);
     $this->load->view('_layout_main', $this->data);

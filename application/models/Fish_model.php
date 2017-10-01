@@ -60,7 +60,7 @@ class Fish_model extends MY_Model {
 
     $data = $this->search_id($id)->row_array();
     $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลปลาสวยงาม' : 'บันทึกข้อมูลปลาสวยงาม';
-    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id,'date_modify'=>date('d/m/Y')] : ['member_id'=>$this->session->id];
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id,'date_modify'=>date('d/m/Y')] : ['member_id'=>$this->session->id,'date_create'=>date('d/m/Y')];
     $this->params['form'] = [
       ['label'=>form_label('','',['class'=>'col-sm-3']),
       'input'=>img('assets/fish/'.$data['picture'],'',['class'=>'text-center']),
@@ -68,8 +68,17 @@ class Fish_model extends MY_Model {
       ['label'=>form_label('','picture',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_upload(array('name'=>'picture','class'=>'form-control')),
       'help'=>''],
-      ['label'=>form_label('ชื่อเต็ม','fullname',array('class'=>'control-label text-right col-sm-3')),
+      ['label'=>form_label('ชื่อไทย','fullname',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_input(array('name'=>'fullname','class'=>'form-control','required'=>TRUE),set_value('fullname',$data['fullname'])),
+      'help'=>''],
+      ['label'=>form_label('ชื่อสามัญ','org_name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'org_name','class'=>'form-control','required'=>TRUE),set_value('org_name',$data['org_name'])),
+      'help'=>''],
+      ['label'=>form_label('ชื่อวิทยาศาสตร์','sci_name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'sci_name','class'=>'form-control','required'=>TRUE),set_value('sci_name',$data['sci_name'])),
+      'help'=>''],
+      ['label'=>form_label('ชื่อวงศ์','fam_name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'fam_name','class'=>'form-control','required'=>TRUE),set_value('fam_name',$data['fam_name'])),
       'help'=>''],
       ['label'=>form_label(('ขนาดเต็มวัย(เซ็นติเมตร)'),'fullsize',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_number(array('name'=>'fullsize','class'=>'form-control','required'=>TRUE,'min'=>'0','maxlength'=>'3'),set_value('fullsize',$data['fullsize'])),
@@ -94,6 +103,9 @@ class Fish_model extends MY_Model {
       'help'=>''],
       ['label'=>form_label(('ภาชนะที่เหมาะสม'),'container_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'container_id','class'=>'form-control'),$this->fish_options('container'),set_value('container_id',$data['container_id'])),
+      'help'=>''],
+      ['label'=>form_label(('เสริมบารมี'),'halo_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'halo_id','class'=>'form-control'),$this->fish_options('halo'),set_value('halo_id',$data['halo_id'])),
       'help'=>'']
     ];
     return $this->load->view('_elements/form', $this->params, TRUE);
@@ -187,6 +199,31 @@ class Fish_model extends MY_Model {
     $disabled = ($id !== '') ? (($id < 5) ? 'disabled' : '') : '';
     $data = $this->db->get_where('container',array('id'=>$id))->row_array();
     $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลภาชนะการเลี้ยงที่เหมาะสม' : 'บันทึกข้อมูลภาชนะการเลี้ยงที่เหมาะสม';
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
+    $this->params['form'] = [
+      ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'name','class'=>'form-control','required'=>TRUE,$disabled=>TRUE),set_value('name',$data['name'])),
+      'help'=>''],
+      ['label'=>form_label(('คำอธิบาย'),'detail',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'detail','class'=>'form-control','required'=>TRUE),set_value('detail',$data['detail'])),
+      'help'=>'']
+    ];
+    return $this->load->view('_elements/form', $this->params, TRUE);
+  }
+
+  function fish_halo($id='',$post='')
+  {
+    if ($post) :
+      if ($id) :
+        return $this->db->set($post)->where('id',$id)->update('halo');
+      else:
+        return $this->db->insert('halo',$post);
+      endif;
+    endif;
+
+    $disabled = '';
+    $data = $this->db->get_where('halo',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลการเสริมบารมี' : 'บันทึกข้อมูลการเสริมบารมี';
     $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
     $this->params['form'] = [
       ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),

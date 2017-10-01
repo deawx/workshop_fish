@@ -64,7 +64,7 @@
             </div>
           <?php endforeach; ?>
           <div class="clearfix"></div>
-          <?php echo anchor('compare','ใส่ปลาลงตู้ &raquo',array('class'=>'btn btn-success btn-block'));?>
+          <?php echo anchor('compare/compare_pool','ยืนยัน!!! เพื่อไปยังรายการถัดไป &raquo',array('class'=>'btn btn-success btn-block'));?>
         <?php endif; ?>
       </div>
     </div>

@@ -90,6 +90,11 @@ class Member_model extends MY_Model {
         'rules' => 'trim|required|max_length[32]'
       ),
       array(
+        'field' => 'password_confirm',
+        'label' => 'รหัสผ่าน',
+        'rules' => 'trim|required|max_length[32]|matches[password]'
+      ),
+      array(
         'field' => 'address',
         'label' => 'ที่อยู่',
         'rules' => 'trim|required'

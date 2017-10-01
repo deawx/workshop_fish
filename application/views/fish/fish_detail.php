@@ -2,9 +2,18 @@
   <div class="col-sm-8">
     <?=img('assets/fish/'.$fish['picture'],'',array('class'=>'img-responsive','style'=>'width:100%;height:300px;'));?>
     <div class="col-sm-12 panel panel-default">
-      <?=heading('<u>ชื่อเต็ม</u> '.$fish['fullname'],'3');?>
+
+      <?=heading('<u>ชื่อไทย</u> '.$fish['fullname'],'3');?>
+      <?=heading('<u>ชื่อสามัญ</u> '.$fish['org_name'],'3');?>
+      <?=heading('<u>ชื่อวิทยาศาสตร์</u> '.$fish['sci_name'],'3');?>
+      <?=heading('<u>ชื่อวงศ์</u> '.$fish['fam_name'],'3');?>
       <?=br();?>
+
+      <u>ข้อมูลจำเพาะ</u>
       <p style="text-indent:40px;line-height:1.8em;"><?=$fish['detail'];?></p>
+      <?=br();?>
+
+      <u>ข้อมูลด้านความเชื่อ</u>
       <p style="text-indent:40px;line-height:1.8em;"><?=$fish['believe'];?></p>
       <?=br();?>
 
