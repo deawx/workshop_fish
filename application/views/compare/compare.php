@@ -84,54 +84,6 @@ endforeach;
     <?php endforeach; ?>
   </div>
 </div>
-<br/>
-<?=heading('<u>จำแนกข้อมูลปลาตามอุปนิสัยและคุณสมบัติทั่วไป</u>','4');?>
-<div class="row">
-  <div class="col-sm-3">
-    <ul class="list-group">
-      <li class="list-group-item active">อุปนิสัยโดยธรรมชาติ <span class="badge"><?=count($nature);?> ประเภท</span></li>
-      <?php foreach ($nature as $l) : ?>
-        <li class="list-group-item">
-          <?=p($l['name']);?>
-          <?=p($l['detail'],array('style'=>'text-indent:15px;'));?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-  <div class="col-sm-3">
-    <ul class="list-group">
-      <li class="list-group-item active">การกินอาหาร <span class="badge"><?=count($feed);?> ประเภท</span></li>
-      <?php foreach ($feed as $l) : ?>
-        <li class="list-group-item">
-          <?=p($l['name']);?>
-          <?=p($l['detail'],array('style'=>'text-indent:15px;'));?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-  <div class="col-sm-3">
-    <ul class="list-group">
-      <li class="list-group-item active">ลักษณะทางสังคม <span class="badge"><?=count($living);?> ประเภท</span></li>
-      <?php foreach ($living as $l) : ?>
-        <li class="list-group-item">
-          <?=p($l['name']);?>
-          <?=p($l['detail'],array('style'=>'text-indent:15px;'));?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-  <div class="col-sm-3">
-    <ul class="list-group">
-      <li class="list-group-item active">สภาพแวดล้อมที่เหมาะสม <span class="badge"><?=count($container);?> ประเภท</span></li>
-      <?php foreach ($container as $l) : ?>
-        <li class="list-group-item">
-          <?=p($l['name']);?>
-          <?=p($l['detail'],array('style'=>'text-indent:15px;'));?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
   alert = $('.alert').html();

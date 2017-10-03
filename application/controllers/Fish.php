@@ -24,6 +24,7 @@ class Fish extends MY_Controller {
       $this->data['feed'] = $this->db->where('id',$this->data['fish']['feed_id'])->get('feed')->row_array();
       $this->data['living'] = $this->db->where('id',$this->data['fish']['living_id'])->get('living')->row_array();
       $this->data['container'] = $this->db->where('id',$this->data['fish']['container_id'])->get('container')->row_array();
+      $this->data['halo'] = $this->db->where('id',$this->data['fish']['halo_id'])->get('halo')->row_array();
       $this->data['related'] = $this->db->select(array('id','picture','fullname','fullsize','fullage'))->order_by('id','RANDOM')->where_not_in('id',$id)->get('fish','4')->result_array();
       $this->data['content'] = $this->load->view('fish/fish_detail',$this->data,TRUE);
     else:
@@ -52,6 +53,7 @@ class Fish extends MY_Controller {
       $this->data['feed'] = $this->db->get('feed')->result_array();
       $this->data['living'] = $this->db->get('living')->result_array();
       $this->data['container'] = $this->db->get('container')->result_array();
+      $this->data['halo'] = $this->db->get('halo')->result_array();
       $this->data['content'] = $this->load->view('fish/fish',$this->data,TRUE);
       $this->data['pagination'] = $this->pagination->create_links();
     endif;

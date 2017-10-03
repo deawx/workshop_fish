@@ -9,32 +9,36 @@
       <?=heading('<u>ชื่อวงศ์</u> '.$fish['fam_name'],'3');?>
       <?=br();?>
 
-      <u>ข้อมูลจำเพาะ</u>
+      <u>ถื่นอาศัย</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$fish['local'];?></p>
+      <?=br();?>
+
+      <u>ลักษณะทั่วไป</u>
       <p style="text-indent:40px;line-height:1.8em;"><?=$fish['detail'];?></p>
       <?=br();?>
 
-      <u>ข้อมูลด้านความเชื่อ</u>
-      <p style="text-indent:40px;line-height:1.8em;"><?=$fish['believe'];?></p>
-      <?=br();?>
-
-      <u>อุปนิสัยโดยธรรมชาติ</u>
-      <p style="line-height:1.8em;"><?=$nature['name'];?></p>
-      <p style="text-indent:40px;line-height:1.8em;"><?=$nature['detail'];?></p>
-      <?=br();?>
-
-      <u>การกินอาหาร</u>
+      <u>อาหาร</u>
       <p style="line-height:1.8em;"><?=$feed['name'];?></p>
       <p style="text-indent:40px;line-height:1.8em;"><?=$feed['detail'];?></p>
       <?=br();?>
 
-      <u>ลักษณะการอยู่อาศัย</u>
+      <u>อุปนิสัยของปลา</u>
+      <p style="line-height:1.8em;"><?=$nature['name'];?></p>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$nature['detail'];?></p>
+      <?=br();?>
+
+      <u>การเลี้ยงในตู้ปลา</u>
       <p style="line-height:1.8em;"><?=$living['name'];?></p>
       <p style="text-indent:40px;line-height:1.8em;"><?=$living['detail'];?></p>
       <?=br();?>
 
-      <u>สภาพแวดล้อมที่เหมาะสม</u>
+      <u>การตกแต่งตู้ปลา</u>
       <p style="line-height:1.8em;"><?=$container['name'];?></p>
       <p style="text-indent:40px;line-height:1.8em;"><?=$container['detail'];?></p>
+      <?=br();?>
+
+      <u>ปลามงคลเสริมบารมี</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$fish['believe'];?></p>
       <?=br();?>
 
     </div>
@@ -63,8 +67,8 @@
               <?=img('assets/fish/'.$r['picture'],'',array('class'=>'img-responsive','style'=>'width:300%;height:200px;'));?>
               <div class="caption">
                 <?=heading(anchor('fish/'.$r['id'],$r['fullname']),'3');?>
-                <p><?='<small>ขนาดความยาวสูงสุดโดยเฉลี่ย </small>'.$fish['fullsize'].' เซ็นติเมตร';?></p>
-                <p><?='<small>อายุเฉลี่ยสูงสุด </small>'.$fish['fullage'].' เดือน';?></p>
+                <p><?='<small>ขนาดความยาวสูงสุดโดยเฉลี่ย </small>'.$r['fullsize'].' เซ็นติเมตร';?></p>
+                <p><?='<small>อายุเฉลี่ยสูงสุด </small>'.$r['fullage'].' ปี';?></p>
               </div>
           </li>
         <?php endforeach; ?>

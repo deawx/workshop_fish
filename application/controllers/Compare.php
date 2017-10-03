@@ -33,7 +33,7 @@ class Compare extends MY_Controller {
       ->join('living as l','l.id = f.living_id')
       ->get('fish as f')
       ->result_array();
-      
+
     $post = $this->input->post();
     if ($post) :
       $amount = $post['amount'];
@@ -100,6 +100,9 @@ class Compare extends MY_Controller {
     $offset = ($this->input->get('p') > 0) ? $this->input->get('p') : '0';
     $this->pagination->initialize($config);
 
+    foreach ($this->session->compare as $c) :
+      $this->db->or_where('f.id',$c['id']);
+    endforeach;
     $this->data['fish'] = $this->db
       ->select('fd.name as feed_name,l.name as living_name,f.*')
       ->join('feed as fd','fd.id = f.feed_id')
