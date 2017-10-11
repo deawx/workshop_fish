@@ -76,19 +76,12 @@
       <div class="panel-body">
         <?=heading('<u>รายการปลาที่อยู่ในตู้</u>','4');?>
         <?php if ( ! is_null($this->session->userdata('compare')) && ! empty($this->session->userdata('compare'))) : ?>
-          <table class="table table-bordered table-hover">
-            <thead> <tr> <th>รูปภาพ</th> <th>ชื่อไทย</th> <th>อายุโดยเฉลี่ย(เดือน)</th> <th></th> </tr> </thead>
-            <tbody>
-              <?php foreach ($this->session->userdata('compare') as $f) : ?>
-                <tr>
-                  <td><?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:80px;height:80px;'));?></td>
-                  <td><?=heading(anchor('fish/'.$f['id'],$f['fullname']),'4');?></td>
-                  <td><?=$f['fullage'];?></td>
-                  <td><?=anchor('fish/compare/'.$f['id'],'ลบออกจากรายการเปรียบเทียบ',array('class'=>'btn btn-warning btn-block'));?></td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+          <?php foreach ($this->session->userdata('compare') as $f) : ?>
+            <div class="col-sm-4 portfolio-item" style="height:250px;">
+              <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:350px;height:200px;'));?>
+              <?=anchor('fish/compare/'.$f['id'],'ลบออกจากรายการเปรียบเทียบ',array('class'=>'btn btn-warning btn-block'));?>
+            </div>
+          <?php endforeach; ?>
           <div class="clearfix"></div>
           <?php echo anchor('compare/compare_pool','ยืนยัน!!! เพื่อไปยังรายการถัดไป &raquo',array('class'=>'btn btn-success btn-block'));?>
         <?php endif; ?>
@@ -99,8 +92,9 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <?=heading('<u>จำแนกจำนวน</u>','4');?>
-        รายการปลาทั้งหมดที่มีคือ <?=$all_fish;?> รายการ <br>
-        รายการปลาทั้งหมดที่ค้นหาคือ <?=$all_fish_search;?> รายการ
+        รายการปลาที่หมดที่มีคือ <?=$this->db->count_all_results('fish');?> รายการ
+        <?php foreach ($fish as $f) : ?>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
@@ -122,6 +116,16 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+    <?php foreach ($fish as $f) : ?>
+      <div class="col-sm-4 portfolio-item" style="height:422px;">
+        <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:350px;height:200px;'));?>
+        <?php if ( ! array_key_exists($f['id'],$this->session->compare)) : ?>
+          <?=anchor('fish/compare/'.$f['id'],'เพิ่มในรายการเปรียบเทียบ',array('class'=>'btn btn-primary btn-block'));?>
+        <?php endif; ?>
+        <?=heading(anchor('fish/'.$f['id'],$f['fullname']),'4');?>
+        <?=p(character_limiter($f['detail'],'100'));?>
+      </div>
+    <?php endforeach; ?>
   </div>
 </div>
 <div class="pull-right"> <?=$this->pagination->create_links();;?> </div>

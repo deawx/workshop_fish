@@ -41,6 +41,22 @@
       <p style="text-indent:40px;line-height:1.8em;"><?=$fish['believe'];?></p>
       <?=br();?>
 
+      <u>วันมงคลเสริมบารมี</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$day['detail'];?></p>
+      <?=br();?>
+
+      <u>ธาตุมงคลเสริมบารมี</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$element['detail'];?></p>
+      <?=br();?>
+
+      <u>ช่วงอายุมงคลเสริมบารมี</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$age['detail'];?></p>
+      <?=br();?>
+
+      <u>เพศมงคลเสริมบารมี</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$sex['detail'];?></p>
+      <?=br();?>
+
     </div>
   </div>
   <div class="col-sm-4">

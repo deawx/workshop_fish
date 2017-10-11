@@ -115,12 +115,7 @@ class Fish extends Admin_Controller {
     $tables = $this->db->get('living')->result_array();
     foreach ($tables as $_t => $t) :
       $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/living_'.$t['id']);
-      $this->table->add_row(
-        ++$_t,
-        $t['name'],
-        $t['detail'],
-        form_anchor_edit('admin/fish/living/'.$t['id']).$delete
-      );
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/living/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
     $this->data['content'] .= heading('รายการข้อมูลลักษณะการอยู่อาศัย','4').hr().br().$this->table->generate();
@@ -143,12 +138,7 @@ class Fish extends Admin_Controller {
     $tables = $this->db->get('container')->result_array();
     foreach ($tables as $_t => $t) :
       $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/container_'.$t['id']);
-      $this->table->add_row(
-        ++$_t,
-        $t['name'],
-        $t['detail'],
-        form_anchor_edit('admin/fish/container/'.$t['id']).$delete
-      );
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/container/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
     $this->data['content'] .= heading('รายการข้อมูลภาชนะการเลี้ยงที่เหมาะสม','4').hr().br().$this->table->generate();
@@ -171,15 +161,102 @@ class Fish extends Admin_Controller {
     $tables = $this->db->get('halo')->result_array();
     foreach ($tables as $_t => $t) :
       $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/halo_'.$t['id']);
-      $this->table->add_row(
-        ++$_t,
-        $t['name'],
-        $t['detail'],
-        form_anchor_edit('admin/fish/halo/'.$t['id']).$delete
-      );
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/halo/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
     $this->data['content'] .= heading('รายการข้อมูลการเสริมบารมี','4').hr().br().$this->table->generate();
+    $this->load->view('_layout_main',$this->data);
+  }
+
+  function day($id='')
+  {
+    $post = $this->input->post();
+    if ($post) :
+      $save = $this->fish->fish_day($id,$post);
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
+        redirect('admin/fish/day');
+      endif;
+    endif;
+
+    $this->data['content'] = $this->fish->fish_day($id);
+    $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
+    $tables = $this->db->get('day')->result_array();
+    foreach ($tables as $_t => $t) :
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/day_'.$t['id']);
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/day/'.$t['id']).$delete );
+    endforeach;
+    $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
+    $this->data['content'] .= heading('รายการข้อมูลวันมงคล','4').hr().br().$this->table->generate();
+    $this->load->view('_layout_main',$this->data);
+  }
+
+  function element($id='')
+  {
+    $post = $this->input->post();
+    if ($post) :
+      $save = $this->fish->fish_element($id,$post);
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
+        redirect('admin/fish/element');
+      endif;
+    endif;
+
+    $this->data['content'] = $this->fish->fish_element($id);
+    $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
+    $tables = $this->db->get('element')->result_array();
+    foreach ($tables as $_t => $t) :
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/element_'.$t['id']);
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/element/'.$t['id']).$delete );
+    endforeach;
+    $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
+    $this->data['content'] .= heading('รายการข้อมูลธาตุมงคล','4').hr().br().$this->table->generate();
+    $this->load->view('_layout_main',$this->data);
+  }
+
+  function age($id='')
+  {
+    $post = $this->input->post();
+    if ($post) :
+      $save = $this->fish->fish_age($id,$post);
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
+        redirect('admin/fish/age');
+      endif;
+    endif;
+
+    $this->data['content'] = $this->fish->fish_age($id);
+    $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
+    $tables = $this->db->get('age')->result_array();
+    foreach ($tables as $_t => $t) :
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/age_'.$t['id']);
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/age/'.$t['id']).$delete );
+    endforeach;
+    $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
+    $this->data['content'] .= heading('รายการข้อมูลช่วงอายุมงคล','4').hr().br().$this->table->generate();
+    $this->load->view('_layout_main',$this->data);
+  }
+
+  function sex($id='')
+  {
+    $post = $this->input->post();
+    if ($post) :
+      $save = $this->fish->fish_sex($id,$post);
+      if ($save !== FALSE) :
+        $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
+        redirect('admin/fish/sex');
+      endif;
+    endif;
+
+    $this->data['content'] = $this->fish->fish_sex($id);
+    $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
+    $tables = $this->db->get('sex')->result_array();
+    foreach ($tables as $_t => $t) :
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/sex_'.$t['id']);
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/sex/'.$t['id']).$delete );
+    endforeach;
+    $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
+    $this->data['content'] .= heading('รายการข้อมูลเพศมงคล','4').hr().br().$this->table->generate();
     $this->load->view('_layout_main',$this->data);
   }
 

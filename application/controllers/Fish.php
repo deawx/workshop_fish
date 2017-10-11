@@ -25,11 +25,17 @@ class Fish extends MY_Controller {
       $this->data['living'] = $this->db->where('id',$this->data['fish']['living_id'])->get('living')->row_array();
       $this->data['container'] = $this->db->where('id',$this->data['fish']['container_id'])->get('container')->row_array();
       $this->data['halo'] = $this->db->where('id',$this->data['fish']['halo_id'])->get('halo')->row_array();
+      $this->data['day'] = $this->db->where('id',$this->data['fish']['day_id'])->get('day')->row_array();
+      $this->data['element'] = $this->db->where('id',$this->data['fish']['element_id'])->get('element')->row_array();
+      $this->data['age'] = $this->db->where('id',$this->data['fish']['age_id'])->get('age')->row_array();
+      $this->data['sex'] = $this->db->where('id',$this->data['fish']['sex_id'])->get('sex')->row_array();
+
       $this->data['related'] = $this->db->select(array('id','picture','fullname','fullsize','fullage'))->order_by('id','RANDOM')->where_not_in('id',$id)->get('fish','4')->result_array();
       $this->data['content'] = $this->load->view('fish/fish_detail',$this->data,TRUE);
     else:
       $search = $this->input->get();
       unset($search['p']);
+      $this->data['all_fish_search'] = '0';
       if ($search) :
         foreach ($search as $s => $_s) :
           foreach ($_s as $n => $_ss) :
@@ -38,22 +44,33 @@ class Fish extends MY_Controller {
           endforeach;
         endforeach;
         $this->data['fish'] = $this->db->get('fish')->result_array();
+        $this->data['all_fish_search'] = count($this->data['fish']);
       else:
         $config	= array(
           'base_url' => uri_string(),
           'total_rows' => $this->db->count_all_results('fish'),
-          'per_page' => '6'
+          'per_page' => '10'
         );
         $offset = ($this->input->get('p') > 0) ? $this->input->get('p') : '0';
         $this->pagination->initialize($config);
         $this->data['fish'] = $this->db->get('fish',$config['per_page'],$offset)->result_array();
       endif;
 
+      $this->data['all_fish'] = $this->db->count_all_results('fish');
+      $this->data['all_feed'] = '';
+      $this->data['all_day'] = '';
+      $this->data['all_age'] = '';
+
       $this->data['nature'] = $this->db->get('nature')->result_array();
       $this->data['feed'] = $this->db->get('feed')->result_array();
       $this->data['living'] = $this->db->get('living')->result_array();
       $this->data['container'] = $this->db->get('container')->result_array();
       $this->data['halo'] = $this->db->get('halo')->result_array();
+      $this->data['day'] = $this->db->get('day')->result_array();
+      $this->data['element'] = $this->db->get('element')->result_array();
+      $this->data['age'] = $this->db->get('age')->result_array();
+      $this->data['sex'] = $this->db->get('sex')->result_array();
+
       $this->data['content'] = $this->load->view('fish/fish',$this->data,TRUE);
       $this->data['pagination'] = $this->pagination->create_links();
     endif;

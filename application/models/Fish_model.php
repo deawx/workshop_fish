@@ -236,4 +236,104 @@ class Fish_model extends MY_Model {
     return $this->load->view('_elements/form', $this->params, TRUE);
   }
 
+  function fish_day($id='',$post='')
+  {
+    if ($post) :
+      if ($id) :
+        return $this->db->set($post)->where('id',$id)->update('day');
+      else:
+        return $this->db->insert('day',$post);
+      endif;
+    endif;
+
+    $disabled = '';
+    $data = $this->db->get_where('day',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลวันมงคล' : 'บันทึกข้อมูลวันมงคล';
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
+    $this->params['form'] = [
+      ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'name','class'=>'form-control','required'=>TRUE,$disabled=>TRUE),set_value('name',$data['name'])),
+      'help'=>''],
+      ['label'=>form_label(('คำอธิบาย'),'detail',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'detail','class'=>'form-control','required'=>TRUE),set_value('detail',$data['detail'])),
+      'help'=>'']
+    ];
+    return $this->load->view('_elements/form', $this->params, TRUE);
+  }
+
+  function fish_element($id='',$post='')
+  {
+    if ($post) :
+      if ($id) :
+        return $this->db->set($post)->where('id',$id)->update('element');
+      else:
+        return $this->db->insert('element',$post);
+      endif;
+    endif;
+
+    $disabled = '';
+    $data = $this->db->get_where('element',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลธาตุมงคล' : 'บันทึกข้อมูลธาตุมงคล';
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
+    $this->params['form'] = [
+      ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'name','class'=>'form-control','required'=>TRUE,$disabled=>TRUE),set_value('name',$data['name'])),
+      'help'=>''],
+      ['label'=>form_label(('คำอธิบาย'),'detail',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'detail','class'=>'form-control','required'=>TRUE),set_value('detail',$data['detail'])),
+      'help'=>'']
+    ];
+    return $this->load->view('_elements/form', $this->params, TRUE);
+  }
+
+  function fish_age($id='',$post='')
+  {
+    if ($post) :
+      if ($id) :
+        return $this->db->set($post)->where('id',$id)->update('age');
+      else:
+        return $this->db->insert('age',$post);
+      endif;
+    endif;
+
+    $disabled = '';
+    $data = $this->db->get_where('age',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลช่วงอายุมงคล' : 'บันทึกข้อมูลช่วงอายุมงคล';
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
+    $this->params['form'] = [
+      ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'name','class'=>'form-control','required'=>TRUE,$disabled=>TRUE),set_value('name',$data['name'])),
+      'help'=>''],
+      ['label'=>form_label(('คำอธิบาย'),'detail',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'detail','class'=>'form-control','required'=>TRUE),set_value('detail',$data['detail'])),
+      'help'=>'']
+    ];
+    return $this->load->view('_elements/form', $this->params, TRUE);
+  }
+
+  function fish_sex($id='',$post='')
+  {
+    if ($post) :
+      if ($id) :
+        return $this->db->set($post)->where('id',$id)->update('sex');
+      else:
+        return $this->db->insert('sex',$post);
+      endif;
+    endif;
+
+    $disabled = '';
+    $data = $this->db->get_where('sex',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลเพศมงคล' : 'บันทึกข้อมูลเพศมงคล';
+    $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
+    $this->params['form'] = [
+      ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_input(array('name'=>'name','class'=>'form-control','required'=>TRUE,$disabled=>TRUE),set_value('name',$data['name'])),
+      'help'=>''],
+      ['label'=>form_label(('คำอธิบาย'),'detail',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'detail','class'=>'form-control','required'=>TRUE),set_value('detail',$data['detail'])),
+      'help'=>'']
+    ];
+    return $this->load->view('_elements/form', $this->params, TRUE);
+  }
+
 }

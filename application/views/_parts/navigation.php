@@ -27,6 +27,10 @@
               <li><?=anchor('admin/fish/living','บันทึกข้อมูลการอยู่อาศัย');?></li>
               <li><?=anchor('admin/fish/container','บันทึกข้อมูลสภาพแวดล้อมที่เหมาะสม');?></li>
               <li><?=anchor('admin/fish/halo','บันทึกข้อมูลการเสริมบารมี');?></li>
+              <li><?=anchor('admin/fish/day','บันทึกข้อมูลวันมงคล');?></li>
+              <li><?=anchor('admin/fish/element','บันทึกข้อมูลธาตุมงคล');?></li>
+              <li><?=anchor('admin/fish/age','บันทึกข้อมูลช่วงอายุมงคล');?></li>
+              <li><?=anchor('admin/fish/sex','บันทึกข้อมูลเพศมงคล');?></li>
               <li><?=anchor('admin/fish','รายการข้อมูลปลาสวยงาม');?></li>
             </ul>
           </li>
