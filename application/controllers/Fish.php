@@ -57,9 +57,6 @@ class Fish extends MY_Controller {
       endif;
 
       $this->data['all_fish'] = $this->db->count_all_results('fish');
-      $this->data['all_feed'] = '';
-      $this->data['all_day'] = '';
-      $this->data['all_age'] = '';
 
       $this->data['nature'] = $this->db->get('nature')->result_array();
       $this->data['feed'] = $this->db->get('feed')->result_array();

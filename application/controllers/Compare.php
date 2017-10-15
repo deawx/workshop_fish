@@ -58,6 +58,10 @@ class Compare extends MY_Controller {
       $fd[] = $l['feed_id'];
       $lv[] = $l['living_id'];
       $ct[] = $l['container_id'];
+      $dy[] = $l['day_id'];
+      $em[] = $l['element_id'];
+      $ag[] = $l['age_id'];
+      $sx[] = $l['sex_id'];
     endforeach;
     $alert = array();
     if (in_array('3',$nt)) :
@@ -72,6 +76,10 @@ class Compare extends MY_Controller {
     $this->data['feed'] = $this->db->where_in('id',$fd)->get('feed')->result_array();
     $this->data['living'] = $this->db->where_in('id',$lv)->get('living')->result_array();
     $this->data['container'] = $this->db->where_in('id',$ct)->get('container')->result_array();
+    $this->data['day'] = $this->db->where_in('id',$dy)->get('day')->result_array();
+    $this->data['element'] = $this->db->where_in('id',$em)->get('element')->result_array();
+    $this->data['age'] = $this->db->where_in('id',$ag)->get('age')->result_array();
+    $this->data['sex'] = $this->db->where_in('id',$sx)->get('sex')->result_array();
     $this->data['content'] = $this->load->view('compare/compare',$this->data,TRUE);
 		$this->load->view('_layout_main', $this->data);
   }

@@ -100,7 +100,24 @@
       <div class="panel-body">
         <?=heading('<u>จำแนกจำนวน</u>','4');?>
         รายการปลาทั้งหมดที่มีคือ <?=$all_fish;?> รายการ <br>
-        รายการปลาทั้งหมดที่ค้นหาคือ <?=$all_fish_search;?> รายการ
+        รายการปลาทั้งหมดที่ค้นหาคือ <?=$all_fish_search;?> รายการ <br>
+        <?php
+        $get = $this->input->get();
+        $words = array('nature_id'=>'อุปนิสัยของปลา','feed_id'=>'การกินอาหาร','living_id'=>'การเลี้ยงปลาในตู้','container_id'=>'การตกแต่งตู้ปลา',
+          'halo_id'=>'ปลามงคลเสริมบารมี','day_id'=>'วันมงคล','element_id'=>'ธาตุมงคล','age_id'=>'ช่วงอายุมงคล','sex_id'=>'เพศมงคล');
+        foreach ($get as $key => $value) : ?>
+          รายการค้นหาจำแนกเป็น <u><?=$words[$key];?></u> จำนวน <?=count($value);?> รายการ<br>
+          <?php $name = substr($key,0,-3);
+          $column[$key] = array_column($fish,$key);
+          $amount = array_count_values($column[$key]);
+          foreach ($value as $_v => $v) :
+            foreach ($$name as $_n => $n) :
+              if ($n['id'] === $v) : ?>
+            <p style="text-indent:1em;"> <u><?=$n['name'];?></u> จำนวน <?=$amount[$v];?> รายการ</p>
+          <?php endif;
+            endforeach;
+          endforeach;
+        endforeach; ?>
       </div>
     </div>
   </div>

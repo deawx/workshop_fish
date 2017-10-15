@@ -106,6 +106,19 @@ class Fish_model extends MY_Model {
       'help'=>''],
       ['label'=>form_label(('เสริมบารมี'),'halo_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'halo_id','class'=>'form-control'),$this->fish_options('halo'),set_value('halo_id',$data['halo_id'])),
+      'help'=>''],
+
+      ['label'=>form_label(('วันมงคล'),'day_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'day_id','class'=>'form-control'),$this->fish_options('day'),set_value('day_id',$data['day_id'])),
+      'help'=>''],
+      ['label'=>form_label(('ธาตุมงคล'),'element_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'element_id','class'=>'form-control'),$this->fish_options('element'),set_value('element_id',$data['element_id'])),
+      'help'=>''],
+      ['label'=>form_label(('ช่วงอายุมงคล'),'age_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'age_id','class'=>'form-control'),$this->fish_options('age'),set_value('age_id',$data['age_id'])),
+      'help'=>''],
+      ['label'=>form_label(('เพศมงคล'),'sex_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'sex_id','class'=>'form-control'),$this->fish_options('sex'),set_value('sex_id',$data['sex_id'])),
       'help'=>'']
     ];
     return $this->load->view('_elements/form', $this->params, TRUE);
