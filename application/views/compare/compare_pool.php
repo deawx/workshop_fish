@@ -1,6 +1,11 @@
 <?php
 $head = ((int)$id > 0) ? '<u>แก้ไขข้อมูลหัวข้อและสถานที่เลี้ยงปลา</u>' : '<u>เพิ่มข้อมูลหัวข้อและสถานที่เลี้ยงปลา</u>';
 $hidden = ((int)$id > 0) ? array('id'=>$id,'date_modify'=>date('d/m/Y')) : array('member_id'=>$this->session->id,'fish_amount'=>count($all_fish),'date_create'=>date('d/m/Y'));
+$form = [
+  ['label'=>form_label('ชื่อหัวข้อที่ต้องการสื่อความหมาย','pool_title',array('class'=>'control-label text-right col-sm-3')),
+  'input'=>form_input(array('name'=>'pool_title','class'=>'form-control','required'=>TRUE),set_value('pool_title',$compare['pool_title'])),
+  'help'=>'']
+];
 echo form_open(uri_string(),array(),$hidden);
 foreach ($all_fish as $_f => $f) :
   echo form_hidden('amount['.$f['id'].']','1');
@@ -22,7 +27,7 @@ endforeach;
     $halo = $this->db->where('id',$f['halo_id'])->get('halo')->row_array();
     $day = $this->db->where('id',$f['day_id'])->get('day')->row_array();
     $element = $this->db->where('id',$f['element_id'])->get('element')->row_array();
-    $age = $this->db->where('id',$f['age_id'])->get('age')->row_array();
+    $amount = $this->db->where('id',$f['amount_id'])->get('amount')->row_array();
     $sex = $this->db->where('id',$f['sex_id'])->get('sex')->row_array();
   ?>
     <table class="table table-bordered">
@@ -40,7 +45,7 @@ endforeach;
         <tr> <th>ปลามงคลเสริมบารมี</th> <td><?=$halo['detail'];?></td> </tr>
         <tr> <th>วันมงคลเสริมบารมี</th> <td><?=$day['detail'];?></td> </tr>
         <tr> <th>ธาตุมงคลเสริมบารมี</th> <td><?=$element['detail'];?></td> </tr>
-        <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$age['detail'];?></td> </tr>
+        <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$amount['detail'];?></td> </tr>
         <tr> <th>เพศมงคลเสริมบารมี</th> <td><?=$sex['detail'];?></td> </tr>
         <tr> <th>ต้องการเลี้ยงปลากี่ตัว</th>
           <td> <?php $recommend = '';
@@ -69,4 +74,16 @@ endforeach;
   <?php endforeach; ?>
 </div>
 <div class="row"> <?=$this->pagination->create_links();?> </div>
+<hr>
+<?=heading($head,'4');?>
+<br>
+<?php foreach ($form as $_f => $f) : ?>
+  <div class="form-group">
+    <?=$f['label'];?>
+    <div class="col-sm-9">
+      <?=$f['input'];?>
+      <span class="help-block"><?=$f['help'];?></span>
+    </div>
+  </div>
+<?php endforeach; ?>
 <?=form_close();?>

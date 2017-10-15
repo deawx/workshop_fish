@@ -214,23 +214,23 @@ class Fish extends Admin_Controller {
     $this->load->view('_layout_main',$this->data);
   }
 
-  function age($id='')
+  function amount($id='')
   {
     $post = $this->input->post();
     if ($post) :
-      $save = $this->fish->fish_age($id,$post);
+      $save = $this->fish->fish_amount($id,$post);
       if ($save !== FALSE) :
         $this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
-        redirect('admin/fish/age');
+        redirect('admin/fish/amount');
       endif;
     endif;
 
-    $this->data['content'] = $this->fish->fish_age($id);
+    $this->data['content'] = $this->fish->fish_amount($id);
     $this->table->set_heading(['#','ชื่อ','รายละเอียด','']);
-    $tables = $this->db->get('age')->result_array();
+    $tables = $this->db->get('amount')->result_array();
     foreach ($tables as $_t => $t) :
-      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/age_'.$t['id']);
-      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/age/'.$t['id']).$delete );
+      $delete = ($t['id'] < 5) ? '' : form_anchor_delete('admin/fish/delete/amount_'.$t['id']);
+      $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/amount/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
     $this->data['content'] .= heading('รายการข้อมูลช่วงอายุมงคล','4').hr().br().$this->table->generate();

@@ -60,7 +60,7 @@ class Compare extends MY_Controller {
       $ct[] = $l['container_id'];
       $dy[] = $l['day_id'];
       $em[] = $l['element_id'];
-      $ag[] = $l['age_id'];
+      $ag[] = $l['amount_id'];
       $sx[] = $l['sex_id'];
     endforeach;
     $alert = array();
@@ -78,7 +78,7 @@ class Compare extends MY_Controller {
     $this->data['container'] = $this->db->where_in('id',$ct)->get('container')->result_array();
     $this->data['day'] = $this->db->where_in('id',$dy)->get('day')->result_array();
     $this->data['element'] = $this->db->where_in('id',$em)->get('element')->result_array();
-    $this->data['age'] = $this->db->where_in('id',$ag)->get('age')->result_array();
+    $this->data['amount'] = $this->db->where_in('id',$ag)->get('amount')->result_array();
     $this->data['sex'] = $this->db->where_in('id',$sx)->get('sex')->result_array();
     $this->data['content'] = $this->load->view('compare/compare',$this->data,TRUE);
 		$this->load->view('_layout_main', $this->data);

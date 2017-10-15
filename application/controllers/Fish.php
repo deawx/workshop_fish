@@ -27,7 +27,7 @@ class Fish extends MY_Controller {
       $this->data['halo'] = $this->db->where('id',$this->data['fish']['halo_id'])->get('halo')->row_array();
       $this->data['day'] = $this->db->where('id',$this->data['fish']['day_id'])->get('day')->row_array();
       $this->data['element'] = $this->db->where('id',$this->data['fish']['element_id'])->get('element')->row_array();
-      $this->data['age'] = $this->db->where('id',$this->data['fish']['age_id'])->get('age')->row_array();
+      $this->data['amount'] = $this->db->where('id',$this->data['fish']['amount_id'])->get('amount')->row_array();
       $this->data['sex'] = $this->db->where('id',$this->data['fish']['sex_id'])->get('sex')->row_array();
 
       $this->data['related'] = $this->db->select(array('id','picture','fullname','fullsize','fullage'))->order_by('id','RANDOM')->where_not_in('id',$id)->get('fish','4')->result_array();
@@ -65,7 +65,7 @@ class Fish extends MY_Controller {
       $this->data['halo'] = $this->db->get('halo')->result_array();
       $this->data['day'] = $this->db->get('day')->result_array();
       $this->data['element'] = $this->db->get('element')->result_array();
-      $this->data['age'] = $this->db->get('age')->result_array();
+      $this->data['amount'] = $this->db->get('amount')->result_array();
       $this->data['sex'] = $this->db->get('sex')->result_array();
 
       $this->data['content'] = $this->load->view('fish/fish',$this->data,TRUE);

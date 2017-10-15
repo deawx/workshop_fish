@@ -86,6 +86,9 @@ class Fish_model extends MY_Model {
       ['label'=>form_label(('อายุเฉลี่ย(ปี)'),'fullage',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_number(array('name'=>'fullage','class'=>'form-control','required'=>TRUE,'min'=>'0','maxlength'=>'3'),set_value('fullage',$data['fullage'])),
       'help'=>'อายุเฉลี่ยมากที่สุด มีหน่วยเป็นปี'],
+      ['label'=>form_label(('ข้อมูลถิ่นอาศัย'),'local',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_textarea(array('name'=>'local','class'=>'form-control','required'=>TRUE,'value'=>$data['local'])),
+      'help'=>''],
       ['label'=>form_label(('ข้อมูลด้านความเชื่อ'),'believe',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_textarea(array('name'=>'believe','class'=>'form-control','required'=>TRUE,'value'=>$data['believe'])),
       'help'=>''],
@@ -107,15 +110,14 @@ class Fish_model extends MY_Model {
       ['label'=>form_label(('เสริมบารมี'),'halo_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'halo_id','class'=>'form-control'),$this->fish_options('halo'),set_value('halo_id',$data['halo_id'])),
       'help'=>''],
-
       ['label'=>form_label(('วันมงคล'),'day_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'day_id','class'=>'form-control'),$this->fish_options('day'),set_value('day_id',$data['day_id'])),
       'help'=>''],
       ['label'=>form_label(('ธาตุมงคล'),'element_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'element_id','class'=>'form-control'),$this->fish_options('element'),set_value('element_id',$data['element_id'])),
       'help'=>''],
-      ['label'=>form_label(('ช่วงอายุมงคล'),'age_id',array('class'=>'control-label text-right col-sm-3')),
-      'input'=>form_dropdown(array('name'=>'age_id','class'=>'form-control'),$this->fish_options('age'),set_value('age_id',$data['age_id'])),
+      ['label'=>form_label(('จำนวนปลาที่ควรเลี้ยง'),'amount_id',array('class'=>'control-label text-right col-sm-3')),
+      'input'=>form_dropdown(array('name'=>'amount_id','class'=>'form-control'),$this->fish_options('amount'),set_value('amount_id',$data['amount_id'])),
       'help'=>''],
       ['label'=>form_label(('เพศมงคล'),'sex_id',array('class'=>'control-label text-right col-sm-3')),
       'input'=>form_dropdown(array('name'=>'sex_id','class'=>'form-control'),$this->fish_options('sex'),set_value('sex_id',$data['sex_id'])),
@@ -299,19 +301,19 @@ class Fish_model extends MY_Model {
     return $this->load->view('_elements/form', $this->params, TRUE);
   }
 
-  function fish_age($id='',$post='')
+  function fish_amount($id='',$post='')
   {
     if ($post) :
       if ($id) :
-        return $this->db->set($post)->where('id',$id)->update('age');
+        return $this->db->set($post)->where('id',$id)->update('amount');
       else:
-        return $this->db->insert('age',$post);
+        return $this->db->insert('amount',$post);
       endif;
     endif;
 
     $disabled = '';
-    $data = $this->db->get_where('age',array('id'=>$id))->row_array();
-    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลช่วงอายุมงคล' : 'บันทึกข้อมูลช่วงอายุมงคล';
+    $data = $this->db->get_where('amount',array('id'=>$id))->row_array();
+    $this->params['head'] = ((int)$id > 0) ? 'แก้ไขข้อมูลจำนวนปลาที่ควรเลี้ยง' : 'บันทึกข้อมูลจำนวนปลาที่ควรเลี้ยง';
     $this->params['hidden'] = ((int)$id > 0) ? ['id'=>$id] : [];
     $this->params['form'] = [
       ['label'=>form_label(('ชื่อ'),'name',array('class'=>'control-label text-right col-sm-3')),

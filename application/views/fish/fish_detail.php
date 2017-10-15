@@ -49,8 +49,8 @@
       <p style="text-indent:40px;line-height:1.8em;"><?=$element['detail'];?></p>
       <?=br();?>
 
-      <u>ช่วงอายุมงคลเสริมบารมี</u>
-      <p style="text-indent:40px;line-height:1.8em;"><?=$age['detail'];?></p>
+      <u>จำนวนปลาที่ควรเลี้ยง</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$amount['detail'];?></p>
       <?=br();?>
 
       <u>เพศมงคลเสริมบารมี</u>
