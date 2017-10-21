@@ -48,29 +48,31 @@ class Compare extends MY_Controller {
       redirect('webboard/compare/'.$compare_id);
     endif;
 
-
     $nt = array();
     $fd = array();
     $lv = array();
     $ct = array();
-    foreach ($this->data['fish'] as $l) :
+    $alert = array();
+    foreach ($this->data['fish'] as $_l => $l) :
       $nt[] = $l['nature_id'];
       $fd[] = $l['feed_id'];
       $lv[] = $l['living_id'];
       $ct[] = $l['container_id'];
       $dy[] = $l['day_id'];
       $em[] = $l['element_id'];
-      $ag[] = $l['amount_id'];
+      $am[] = $l['amount_id'];
       $sx[] = $l['sex_id'];
+      if (in_array($l['nature_id'],array('3','4','5'))) :
+        $alert[] = $l;
+      endif;
     endforeach;
-    $alert = array();
-    if (in_array('3',$nt)) :
-      $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยก้าวร้าว';
-    elseif (in_array('4',$nt)) :
-      $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยดุร้าย';
-    elseif (in_array('5',$nt)) :
-      $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยหวงถิ่นอาศัย';
-    endif;
+    // if (in_array('3',$nt)) :
+    //   $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยก้าวร้าว';
+    // elseif (in_array('4',$nt)) :
+    //   $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยดุร้าย';
+    // elseif (in_array('5',$nt)) :
+    //   $alert[] = 'อันตราย ! พบรายการปลาที่มีอุปนิสัยหวงถิ่นอาศัย';
+    // endif;
     $this->data['alert'] = $alert;
     $this->data['nature'] = $this->db->where_in('id',$nt)->get('nature')->result_array();
     $this->data['feed'] = $this->db->where_in('id',$fd)->get('feed')->result_array();
@@ -78,7 +80,7 @@ class Compare extends MY_Controller {
     $this->data['container'] = $this->db->where_in('id',$ct)->get('container')->result_array();
     $this->data['day'] = $this->db->where_in('id',$dy)->get('day')->result_array();
     $this->data['element'] = $this->db->where_in('id',$em)->get('element')->result_array();
-    $this->data['amount'] = $this->db->where_in('id',$ag)->get('amount')->result_array();
+    $this->data['amount'] = $this->db->where_in('id',$am)->get('amount')->result_array();
     $this->data['sex'] = $this->db->where_in('id',$sx)->get('sex')->result_array();
     $this->data['content'] = $this->load->view('compare/compare',$this->data,TRUE);
 		$this->load->view('_layout_main', $this->data);

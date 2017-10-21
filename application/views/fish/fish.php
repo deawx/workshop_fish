@@ -90,7 +90,7 @@
             </tbody>
           </table>
           <div class="clearfix"></div>
-          <?php echo anchor('compare/compare_pool','ยืนยัน!!! เพื่อไปยังรายการถัดไป &raquo',array('class'=>'btn btn-success btn-block'));?>
+          <?php echo anchor('compare','ยืนยัน!!! เพื่อไปยังรายการถัดไป &raquo',array('class'=>'btn btn-success btn-block'));?>
         <?php endif; ?>
       </div>
     </div>
@@ -103,6 +103,7 @@
         รายการปลาทั้งหมดที่ค้นหาคือ <?=$all_fish_search;?> รายการ <br>
         <?php
         $get = $this->input->get();
+        unset($get['p']);
         $words = array('nature_id'=>'อุปนิสัยของปลา','feed_id'=>'การกินอาหาร','living_id'=>'การเลี้ยงปลาในตู้','container_id'=>'การตกแต่งตู้ปลา',
           'halo_id'=>'ปลามงคลเสริมบารมี','day_id'=>'วันมงคล','element_id'=>'ธาตุมงคล','amount_id'=>'ช่วงอายุมงคล','sex_id'=>'เพศมงคล');
         foreach ($get as $key => $value) : ?>

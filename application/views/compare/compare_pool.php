@@ -12,7 +12,7 @@ foreach ($all_fish as $_f => $f) :
 endforeach;
 ?>
 <div class="row">
-  <div class="col-sm-4"> <?=anchor('fish','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?> </div>
+  <div class="col-sm-4"> <?=anchor('compare','ย้อนกลับ',array('class'=>'btn btn-info btn-block'));?> </div>
   <div class="col-sm-8"> <?=form_submit('','บันทึกข้อมูลการเปรียบเทียบ',array('class'=>'btn btn-success btn-block'));?> </div>
 </div>
 <?=hr();?>
