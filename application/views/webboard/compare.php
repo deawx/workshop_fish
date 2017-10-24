@@ -17,77 +17,61 @@
         <?php foreach ($compare_detil as $c) : ?>
           <?php $fish = $this->db->get_where('fish',array('id'=>$c['fish_id']))->row_array(); ?>
           <div class="col-md-6 portfolio-item">
-
-              <?php
-                $feed = $this->db->where('id',$fish['feed_id'])->get('feed')->row_array();
-                $nature = $this->db->where('id',$fish['nature_id'])->get('nature')->row_array();
-                $living = $this->db->where('id',$fish['living_id'])->get('living')->row_array();
-                $container = $this->db->where('id',$fish['container_id'])->get('container')->row_array();
-                $halo = $this->db->where('id',$fish['halo_id'])->get('halo')->row_array();
-                $day = $this->db->where('id',$fish['day_id'])->get('day')->row_array();
-                $element = $this->db->where('id',$fish['element_id'])->get('element')->row_array();
-                $amount = $this->db->where('id',$fish['amount_id'])->get('amount')->row_array();
-                $sex = $this->db->where('id',$fish['sex_id'])->get('sex')->row_array();
-              ?>
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr> <td colspan="2"><?=img('assets/fish/'.$fish['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;margin:0px auto;'));?></td> </tr>
-                    <tr> <th style="width:20%;">ชื่อไทย</th> <td><?=$fish['fullname'];?></td> </tr>
-                    <tr> <th>ชื่อสามัญ</th> <td><?=$fish['org_name'];?></td> </tr>
-                    <tr> <th>ชื่อวิทยาศาสตร์</th> <td><?=$fish['sci_name'];?></td> </tr>
-                    <tr> <th>ชื่อวงศ์</th> <td><?=$fish['fam_name'];?></td> </tr>
-                    <tr> <th>ถิ่นอาศัย</th> <td><?=$fish['local'];?></td> </tr>
-                    <tr> <th>ลักษณะทั่วไป</th> <td><?=$fish['detail'];?></td> </tr>
-                    <tr> <th>อาหาร</th> <td><?=$feed['detail'];?></td> </tr>
-                    <tr> <th>อุปนิสัยของปลา</th> <td><?=$nature['detail'];?></td> </tr>
-                    <tr> <th>การเลี้ยงปลาในตู้</th> <td><?=$living['detail'];?></td> </tr>
-                    <tr> <th>การตกแต่งตู้ปลา</th> <td><?=$container['detail'];?></td> </tr>
-                    <tr> <th>ปลามงคลเสริมบารมี</th> <td><?=$halo['detail'];?></td> </tr>
-                    <tr> <th>วันมงคลเสริมบารมี</th> <td><?=$day['detail'];?></td> </tr>
-                    <tr> <th>ธาตุมงคลเสริมบารมี</th> <td><?=$element['detail'];?></td> </tr>
-                    <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$amount['detail'];?></td> </tr>
-                    <tr> <th>เพศมงคลเสริมบารมี</th> <td><?=$sex['detail'];?></td> </tr>
-                    <tr> <th>ต้องการเลี้ยงปลากี่ตัว</th>
-                      <td> <?php $recommend = '';
-                        switch ($fish['living_id']) :
-                          case '1':
-                          $recommend = '1ตัว เท่านั้น';
-                          break;
-                          case '2':
-                          $recommend = '1ตัว หรือ 1คู่ เท่านั้น';
-                          break;
-                          case '3':
-                          $recommend = 'มากกว่า 1ตัว ก็ได้';
-                          break;
-                          case '4':
-                          $recommend = 'เลี้ยงเป็นกลุ่ม 2ตัว ขึ้นไปเท่านั้น';
-                          break;
-                          default:
-                          $recommend = 'ตามความเหมาะสม';
-                          break;
-                        endswitch;
-                        echo $recommend; ?>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-
+            <?php
+            $feed = $this->db->where('id',$fish['feed_id'])->get('feed')->row_array();
+            $nature = $this->db->where('id',$fish['nature_id'])->get('nature')->row_array();
+            $living = $this->db->where('id',$fish['living_id'])->get('living')->row_array();
+            $container = $this->db->where('id',$fish['container_id'])->get('container')->row_array();
+            $halo = $this->db->where('id',$fish['halo_id'])->get('halo')->row_array();
+            $day = $this->db->where('id',$fish['day_id'])->get('day')->row_array();
+            $element = $this->db->where('id',$fish['element_id'])->get('element')->row_array();
+            $amount = $this->db->where('id',$fish['amount_id'])->get('amount')->row_array();
+            $sex = $this->db->where('id',$fish['sex_id'])->get('sex')->row_array();
+            ?>
+            <table class="table table-bordered">
+              <tbody>
+                <tr> <td colspan="2"><?=img('assets/fish/'.$fish['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;margin:0px auto;'));?></td> </tr>
+                <tr> <th style="width:20%;">ชื่อไทย</th> <td><?=$fish['fullname'];?></td> </tr>
+                <tr> <th>ชื่อสามัญ</th> <td><?=$fish['org_name'];?></td> </tr>
+                <tr> <th>ชื่อวิทยาศาสตร์</th> <td><?=$fish['sci_name'];?></td> </tr>
+                <tr> <th>ชื่อวงศ์</th> <td><?=$fish['fam_name'];?></td> </tr>
+                <tr> <th>ถิ่นอาศัย</th> <td><?=$fish['local'];?></td> </tr>
+                <tr> <th>ลักษณะทั่วไป</th> <td><?=$fish['detail'];?></td> </tr>
+                <tr> <th>อาหาร</th> <td><?=$feed['detail'];?></td> </tr>
+                <tr> <th>อุปนิสัยของปลา</th> <td><?=$nature['detail'];?></td> </tr>
+                <tr> <th>การเลี้ยงปลาในตู้</th> <td><?=$living['detail'];?></td> </tr>
+                <tr> <th>การตกแต่งตู้ปลา</th> <td><?=$container['detail'];?></td> </tr>
+                <tr> <th>ปลามงคลเสริมบารมี</th> <td><?=$halo['detail'];?></td> </tr>
+                <tr> <th>วันมงคลเสริมบารมี</th> <td><?=$day['detail'];?></td> </tr>
+                <tr> <th>ธาตุมงคลเสริมบารมี</th> <td><?=$element['detail'];?></td> </tr>
+                <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$amount['detail'];?></td> </tr>
+                <tr> <th>เพศมงคลเสริมบารมี</th> <td><?=$sex['detail'];?></td> </tr>
+                <tr> <th>ต้องการเลี้ยงปลากี่ตัว</th>
+                  <td> <?php $recommend = '';
+                  switch ($fish['living_id']) :
+                    case '1':
+                    $recommend = '1ตัว เท่านั้น';
+                    break;
+                    case '2':
+                    $recommend = '1ตัว หรือ 1คู่ เท่านั้น';
+                    break;
+                    case '3':
+                    $recommend = 'มากกว่า 1ตัว ก็ได้';
+                    break;
+                    case '4':
+                    $recommend = 'เลี้ยงเป็นกลุ่ม 2ตัว ขึ้นไปเท่านั้น';
+                    break;
+                    default:
+                    $recommend = 'ตามความเหมาะสม';
+                    break;
+                  endswitch;
+                  echo $recommend; ?>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         <?php endforeach; ?>
-      </div>
-      <div class="col-sm-12">
-        <br/><hr/>
-        <?=heading('<u>หัวข้อ</u> '.$compare['pool_title'],'4');?>
-        <?=p('<u>ชนิดของปลาที่เลี้ยง(จำนวน)</u>');?>
-        <p style="text-indent:40px;line-height:1.8em;"><?=$compare['fish_amount'];?> ชนิด</p>
-        <?=br();?>
-        <?=p('<u>รายละเอียดบ่อปลา</u>');?>
-        <p style="text-indent:40px;line-height:1.8em;"><?=$compare['pool_detail'];?></p>
-        <?=br();?>
-        <?=p('<u>ข้อมูลทางความเชื่อ</u>');?>
-        <p style="text-indent:40px;line-height:1.8em;"><?=$compare['pool_believe'];?></p>
-        <?=br();?>
       </div>
     </div>
   </div>
@@ -107,8 +91,8 @@
     <div class="pull-right"><?=$this->pagination->create_links();?></div>
     <?=br(4);?>
   </div>
-    <?php if ($this->session->is_login === TRUE) : ?>
-      <div class="well">
+  <?php if ($this->session->is_login === TRUE) : ?>
+    <div class="well">
       <?=form_open(uri_string(),array('class'=>'form-horizontal'),array('compare_id'=>$compare['id'],'commented_by'=>$this->session->id,'date_create'=>date('d/m/Y H:i:s')));?>
       <?=heading('คอมเม้นต์','4').hr();?>
       <div class="form-group">
@@ -130,11 +114,8 @@
 
 <?php else: ?>
 
-
   <div class="col-md-12">
-    <div class="col-md-3">
-      <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'window.history.back()'));?>
-    </div>
+    <div class="col-md-3"> <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'history.back(); return false;'));?> </div>
     <div class="col-md-9">
       <?=form_open('',['method'=>'get']);?>
       <div class="input-group">
@@ -154,13 +135,9 @@
         <?php $comments = $this->db->where('webboard_id',$n['id'])->count_all_results('webboard_comment');?>
         <?php $member_id = $this->db->get_where('member',array('id'=>$n['member_id']))->row_array();?>
         <div class="panel-heading">
-          <p class="panel-title">
-            <?=anchor('webboard/compare/'.$n['id'],character_limiter($n['pool_title'],'100'));?>
-          </p>
+          <p class="panel-title"> <?=anchor('webboard/compare/'.$n['id'],character_limiter($n['pool_title'],'100'));?> </p>
         </div>
-        <div class="panel-body">
-          <?=character_limiter($n['pool_detail'],'150');?>
-        </div>
+        <div class="panel-body"> <?=character_limiter($n['pool_detail'],'150');?> </div>
         <div class="panel-footer">
           <span>โพสต์เมื่อ <?=$n['date_create'];?> : </span>
           <span>แก้ไขเมื่อ <?=$n['date_modify'];?> : </span>
