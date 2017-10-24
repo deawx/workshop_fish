@@ -33,46 +33,46 @@ endforeach;
 <div class="panel panel-warning">
   <div class="panel-heading"> <h3 class="panel-title">รายการปลาที่มีนิสัยก้าวร้าว</h3> </div>
   <div class="panel-body">
-    <?php foreach ($nature3 as $_f => $f) : ?>
-      <div class="media col-md-6 alert">
-        <div class="media-left"><?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?></div>
-        <div class="media-body">
-          <h4 class="media-heading"><?=$f['fullname'];?></h4>
+    <div class="row">
+      <?php foreach ($nature3 as $_f => $f) : ?>
+        <div class="col-xs-2"> <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?> </div>
+        <div class="col-xs-4">
+          <h4><?=$f['fullname'];?></h4>
           <?=p($f['feed_name']);?>
           <?=p($f['living_name']);?>
         </div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
   </div>
 </div>
 <div class="panel panel-danger">
   <div class="panel-heading"> <h3 class="panel-title">รายการปลาที่มีนิสัยดุร้าย</h3> </div>
   <div class="panel-body">
-    <?php foreach ($nature4 as $_f => $f) : ?>
-      <div class="media col-md-6 alert">
-        <div class="media-left"><?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?></div>
-        <div class="media-body">
-          <h4 class="media-heading"><?=$f['fullname'];?></h4>
+    <div class="row">
+      <?php foreach ($nature4 as $_f => $f) : ?>
+        <div class="col-xs-2"> <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?> </div>
+        <div class="col-xs-4">
+          <h4><?=$f['fullname'];?></h4>
           <?=p($f['feed_name']);?>
           <?=p($f['living_name']);?>
         </div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
   </div>
 </div>
 <div class="panel panel-danger">
   <div class="panel-heading"> <h3 class="panel-title">รายการปลาที่มีนิสัยหวงถิ่นอาศัย</h3> </div>
   <div class="panel-body">
-    <?php foreach ($nature5 as $_f => $f) : ?>
-      <div class="media col-md-6 alert">
-        <div class="media-left"><?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?></div>
-        <div class="media-body">
-          <h4 class="media-heading"><?=$f['fullname'];?></h4>
+    <div class="row">
+      <?php foreach ($nature5 as $_f => $f) : ?>
+        <div class="col-xs-2"> <?=img('assets/fish/'.$f['picture'],'',array('class'=>'img-responsive','style'=>'width:150px;height:100px;'));?> </div>
+        <div class="col-xs-4">
+          <h4><?=$f['fullname'];?></h4>
           <?=p($f['feed_name']);?>
           <?=p($f['living_name']);?>
         </div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
