@@ -45,30 +45,8 @@ endforeach;
         <tr> <th>ปลามงคลเสริมบารมี</th> <td><?=$halo['detail'];?></td> </tr>
         <tr> <th>วันมงคลเสริมบารมี</th> <td><?=$day['detail'];?></td> </tr>
         <tr> <th>ธาตุมงคลเสริมบารมี</th> <td><?=$element['detail'];?></td> </tr>
-        <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$amount['detail'];?></td> </tr>
         <tr> <th>เพศมงคลเสริมบารมี</th> <td><?=$sex['detail'];?></td> </tr>
-        <tr> <th>ต้องการเลี้ยงปลากี่ตัว</th>
-          <td> <?php $recommend = '';
-            switch ($f['living_id']) :
-              case '1':
-              $recommend = '1ตัว เท่านั้น';
-              break;
-              case '2':
-              $recommend = '1ตัว หรือ 1คู่ เท่านั้น';
-              break;
-              case '3':
-              $recommend = 'มากกว่า 1ตัว ก็ได้';
-              break;
-              case '4':
-              $recommend = 'เลี้ยงเป็นกลุ่ม 2ตัว ขึ้นไปเท่านั้น';
-              break;
-              default:
-              $recommend = 'ตามความเหมาะสม';
-              break;
-            endswitch;
-            echo $recommend; ?>
-          </td>
-        </tr>
+        <tr> <th>จะนวนปลาที่ควรเลี้ยง</th> <td><?=$amount['detail'];?></td> </tr>
       </tbody>
     </table>
   <?php endforeach; ?>

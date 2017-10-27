@@ -14,10 +14,8 @@
        </p>
       <?=heading('<u>รายการปลาทั้งหมด</u>','4');?>
       <div class="col-sm-12">
-        <?php foreach ($compare_detil as $c) : ?>
-          <?php $fish = $this->db->get_where('fish',array('id'=>$c['fish_id']))->row_array(); ?>
-          <div class="col-md-6 portfolio-item">
-            <?php
+        <?php foreach ($compare_detil as $c) :
+            $fish = $this->db->get_where('fish',array('id'=>$c['fish_id']))->row_array();
             $feed = $this->db->where('id',$fish['feed_id'])->get('feed')->row_array();
             $nature = $this->db->where('id',$fish['nature_id'])->get('nature')->row_array();
             $living = $this->db->where('id',$fish['living_id'])->get('living')->row_array();
@@ -30,7 +28,7 @@
             ?>
             <table class="table table-bordered">
               <tbody>
-                <tr> <td colspan="2"><?=img('assets/fish/'.$fish['picture'],'',array('class'=>'img-responsive','style'=>'width:200px;height:100px;margin:0px auto;'));?></td> </tr>
+                <tr> <td colspan="2"><?=img('assets/fish/'.$fish['picture'],'',array('class'=>'img-responsive','style'=>'width:400px;height:250px;margin:0px auto;'));?></td> </tr>
                 <tr> <th style="width:20%;">ชื่อไทย</th> <td><?=$fish['fullname'];?></td> </tr>
                 <tr> <th>ชื่อสามัญ</th> <td><?=$fish['org_name'];?></td> </tr>
                 <tr> <th>ชื่อวิทยาศาสตร์</th> <td><?=$fish['sci_name'];?></td> </tr>
@@ -39,38 +37,15 @@
                 <tr> <th>ลักษณะทั่วไป</th> <td><?=$fish['detail'];?></td> </tr>
                 <tr> <th>อาหาร</th> <td><?=$feed['detail'];?></td> </tr>
                 <tr> <th>อุปนิสัยของปลา</th> <td><?=$nature['detail'];?></td> </tr>
-                <tr> <th>การเลี้ยงปลาในตู้</th> <td><?=$living['detail'];?></td> </tr>
+                <tr> <th>การเข้าสังคม</th> <td><?=$living['detail'];?></td> </tr>
                 <tr> <th>การตกแต่งตู้ปลา</th> <td><?=$container['detail'];?></td> </tr>
                 <tr> <th>ปลามงคลเสริมบารมี</th> <td><?=$halo['detail'];?></td> </tr>
                 <tr> <th>วันมงคลเสริมบารมี</th> <td><?=$day['detail'];?></td> </tr>
                 <tr> <th>ธาตุมงคลเสริมบารมี</th> <td><?=$element['detail'];?></td> </tr>
-                <tr> <th>ช่วงอายุมงคลเสริมบารมี</th> <td><?=$amount['detail'];?></td> </tr>
                 <tr> <th>เพศมงคลเสริมบารมี</th> <td><?=$sex['detail'];?></td> </tr>
-                <tr> <th>ต้องการเลี้ยงปลากี่ตัว</th>
-                  <td> <?php $recommend = '';
-                  switch ($fish['living_id']) :
-                    case '1':
-                    $recommend = '1ตัว เท่านั้น';
-                    break;
-                    case '2':
-                    $recommend = '1ตัว หรือ 1คู่ เท่านั้น';
-                    break;
-                    case '3':
-                    $recommend = 'มากกว่า 1ตัว ก็ได้';
-                    break;
-                    case '4':
-                    $recommend = 'เลี้ยงเป็นกลุ่ม 2ตัว ขึ้นไปเท่านั้น';
-                    break;
-                    default:
-                    $recommend = 'ตามความเหมาะสม';
-                    break;
-                  endswitch;
-                  echo $recommend; ?>
-                </td>
-              </tr>
+                <tr> <th>จะนวนปลาที่ควรเลี้ยง</th> <td><?=$amount['detail'];?></td> </tr>
             </tbody>
           </table>
-          </div>
         <?php endforeach; ?>
       </div>
     </div>

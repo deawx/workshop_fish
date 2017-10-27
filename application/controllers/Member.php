@@ -41,6 +41,7 @@ class Member extends MY_Controller {
 
 		$post = $this->input->post();
 		if ($post) :
+      unset($post['password_confirm']);
 			$register = $this->member->register($post);
 			if ($register !== FALSE) :
 				$this->session->set_flashdata(array('class'=>'success','value'=>'สมัครสมาชิกเสร็จสิ้น กรุณาเข้าสู่ระบบ'));

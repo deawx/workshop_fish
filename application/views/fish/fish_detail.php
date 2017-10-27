@@ -27,7 +27,7 @@
       <p style="text-indent:40px;line-height:1.8em;"><?=$nature['detail'];?></p>
       <?=br();?>
 
-      <u>การเลี้ยงในตู้ปลา</u>
+      <u>การเข้าสังคม</u>
       <p style="line-height:1.8em;"><?=$living['name'];?></p>
       <p style="text-indent:40px;line-height:1.8em;"><?=$living['detail'];?></p>
       <?=br();?>
@@ -49,12 +49,12 @@
       <p style="text-indent:40px;line-height:1.8em;"><?=$element['detail'];?></p>
       <?=br();?>
 
-      <u>จำนวนปลาที่ควรเลี้ยง</u>
-      <p style="text-indent:40px;line-height:1.8em;"><?=$amount['detail'];?></p>
-      <?=br();?>
-
       <u>เพศมงคลเสริมบารมี</u>
       <p style="text-indent:40px;line-height:1.8em;"><?=$sex['detail'];?></p>
+      <?=br();?>
+
+      <u>จำนวนปลาที่ควรเลี้ยง</u>
+      <p style="text-indent:40px;line-height:1.8em;"><?=$amount['detail'];?></p>
       <?=br();?>
 
     </div>

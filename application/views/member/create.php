@@ -22,7 +22,10 @@ $form = [
   'input'=>form_number(['name'=>'phone','class'=>'form-control','required'=>TRUE],set_value('phone')),
   'help'=>''],
   ['label'=>form_label('รหัสผ่าน','password',['class'=>'control-label text-right col-sm-3']),
-  'input'=>form_input(['name'=>'password','class'=>'form-control','required'=>TRUE],set_value('password')),
+  'input'=>form_input(['name'=>'password','class'=>'form-control','required'=>TRUE]),
+  'help'=>''],
+  ['label'=>form_label('รหัสผ่าน(ยืนยัน)','password_confirm',['class'=>'control-label text-right col-sm-3']),
+  'input'=>form_input(['name'=>'password_confirm','class'=>'form-control','required'=>TRUE]),
   'help'=>'']
 ];
 ?>

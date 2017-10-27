@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading"> <?=heading('การเลี้ยงปลาในตู้','3',array('class'=>'panel-title'));?> </div>
+    <div class="panel-heading"> <?=heading('การเข้าสังคม','3',array('class'=>'panel-title'));?> </div>
     <div class="panel-body">
       <?php foreach ($living as $n) :
         $checked = isset($living_id) ? ((in_array($n['id'],$living_id)) ? TRUE : '') : '';
@@ -59,7 +59,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading"> <?=heading('การตกแต่งตู้ปลา','3',array('class'=>'panel-title'));?> </div>
+    <div class="panel-heading"> <?=heading('การเลี้ยงปลาในตู้','3',array('class'=>'panel-title'));?> </div>
     <div class="panel-body">
       <?php foreach ($container as $n) :
         $checked = isset($container_id) ? ((in_array($n['id'],$container_id)) ? TRUE : '') : '';

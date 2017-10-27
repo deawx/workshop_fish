@@ -29,7 +29,7 @@
               <li><?=anchor('admin/fish/halo','บันทึกข้อมูลการเสริมบารมี');?></li>
               <li><?=anchor('admin/fish/day','บันทึกข้อมูลวันมงคล');?></li>
               <li><?=anchor('admin/fish/element','บันทึกข้อมูลธาตุมงคล');?></li>
-              <li><?=anchor('admin/fish/amount','บันทึกข้อมูลช่วงอายุมงคล');?></li>
+              <li><?=anchor('admin/fish/amount','บันทึกข้อมูลจำนวนปลาที่ควรเลี้ยง');?></li>
               <li><?=anchor('admin/fish/sex','บันทึกข้อมูลเพศมงคล');?></li>
               <li><?=anchor('admin/fish','รายการข้อมูลปลาสวยงาม');?></li>
             </ul>

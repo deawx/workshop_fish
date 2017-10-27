@@ -118,7 +118,7 @@ class Fish extends Admin_Controller {
       $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/living/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
-    $this->data['content'] .= heading('รายการข้อมูลลักษณะการอยู่อาศัย','4').hr().br().$this->table->generate();
+    $this->data['content'] .= heading('รายการข้อมูลลักษณะการเข้าสังคม','4').hr().br().$this->table->generate();
     $this->load->view('_layout_main',$this->data);
   }
 
@@ -233,7 +233,7 @@ class Fish extends Admin_Controller {
       $this->table->add_row( ++$_t, $t['name'], $t['detail'], form_anchor_edit('admin/fish/amount/'.$t['id']).$delete );
     endforeach;
     $this->table->set_template(['table_open'=>'<table class="table table-bordered table-striped table-hover">']);
-    $this->data['content'] .= heading('รายการข้อมูลช่วงอายุมงคล','4').hr().br().$this->table->generate();
+    $this->data['content'] .= heading('รายการจำนวนปลาที่ควรเลี้ยง','4').hr().br().$this->table->generate();
     $this->load->view('_layout_main',$this->data);
   }
 

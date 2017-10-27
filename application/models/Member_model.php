@@ -32,6 +32,11 @@ class Member_model extends MY_Model {
         'field' => 'password',
         'label' => 'รหัสผ่าน',
         'rules' => 'trim|required|max_length[32]'
+      ),
+      array(
+        'field' => 'password_confirm',
+        'label' => 'รหัสผ่าน(ยืนยัน)',
+        'rules' => 'trim|required|matches[password]'
       )
     ),
     'edit' => array(
@@ -91,7 +96,7 @@ class Member_model extends MY_Model {
       ),
       array(
         'field' => 'password_confirm',
-        'label' => 'รหัสผ่าน',
+        'label' => 'รหัสผ่าน(ยืนยัน)',
         'rules' => 'trim|required|max_length[32]|matches[password]'
       ),
       array(

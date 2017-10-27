@@ -30,6 +30,7 @@ class Member extends Admin_Controller {
 	{
 		$post = $this->input->post();
 		if ($post) :
+			unset($post['password_confirm']);
 			$create = $this->member->create($post);
 			if ($create !== FALSE) :
 				$this->session->set_flashdata(array('class'=>'success','value'=>'เพิ่มข้อมูลเสร็จสิ้น'));
