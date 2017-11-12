@@ -40,7 +40,7 @@ class Fish extends MY_Controller {
         foreach ($search as $s => $_s) :
           foreach ($_s as $n => $_ss) :
             $this->data[$s][$_ss] = $_ss;
-            $this->db->or_where($s,$_ss);
+            $this->db->where($s,$_ss);
           endforeach;
         endforeach;
         $this->data['fish'] = $this->db->get('fish')->result_array();
@@ -57,7 +57,6 @@ class Fish extends MY_Controller {
       endif;
 
       $this->data['all_fish'] = $this->db->count_all_results('fish');
-
       $this->data['nature'] = $this->db->get('nature')->result_array();
       $this->data['feed'] = $this->db->get('feed')->result_array();
       $this->data['living'] = $this->db->get('living')->result_array();

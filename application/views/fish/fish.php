@@ -32,6 +32,15 @@
     </div>
   </div>
   <div class="panel panel-default">
+    <div class="panel-heading"> <?=heading('ธาตุมงคลเสริมบารมี','3',array('class'=>'panel-title'));?> </div>
+    <div class="panel-body">
+      <?php foreach ($element as $n) :
+        $checked = isset($element_id) ? ((in_array($n['id'],$element_id)) ? TRUE : '') : '';
+        echo form_checkbox(array('name'=>'element_id[]'),$n['id'],$checked).$n['name'].br();
+        endforeach; ?>
+    </div>
+  </div>
+  <div class="panel panel-default">
     <div class="panel-heading"> <?=heading('จำนวนปลาที่ควรเลี้ยง','3',array('class'=>'panel-title'));?> </div>
     <div class="panel-body">
       <?php foreach ($amount as $n) :
