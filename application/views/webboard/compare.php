@@ -1,5 +1,6 @@
 <?php if ($this->uri->segment(3) > 0) : ?>
-  <?php $edit = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/compare_edit/'.$compare['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
+  <?php //$edit = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/compare_edit/'.$compare['id'],'แก้ไข',array('class'=>'btn btn-warning pull-right')) :'';?>
+  <?php $edit = '';?>
   <?php $delete = ($this->session->id == $member_id['id'] || $this->session->role == 'admin') ? anchor('webboard/delete_compare/'.$compare['id'],'ลบ',array('class'=>'btn btn-danger pull-right','onclick'=>"return confirm('ต้องการลบหัวข้อนี้?');")) :'';?>
 
   <?=anchor('#','ย้อนกลับ',array('class'=>'btn btn-info','onclick'=>'history.back(); return false;'));?>

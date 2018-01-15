@@ -16,7 +16,9 @@ class Member extends Admin_Controller {
 		$tables = $this->member->search(array('role'=>'member'))->result_array();
 		foreach ($tables as $_t => $t) :
 			$this->table->add_row(
-				img('assets/members/'.$t['picture'],'',array('style'=>'width:80px;height:80px;','class'=>'img-circle text-center')),
+				(($t['picture']!="") AND file_exists(FCPATH.'assets/members/'.$t['picture']))
+					? img('assets/members/'.$t['picture'],'',array('style'=>'width:80px;height:80px;','class'=>'img-circle text-center'))
+					: img('assets/images/'.(($t['title']=="นาย") ? 'male' : 'female').'.jpg','',array('style'=>'width:80px;height:80px;','class'=>'img-circle text-center')),
 				$t['title'].nbs(3).$t['fullname'].br().'<small>'.$t['email'].'</small>',
 				$t['date_create'],
 				form_anchor_edit('admin/member/edit/'.$t['id']).form_anchor_delete('admin/member/delete/'.$t['id']));
