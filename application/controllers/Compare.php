@@ -105,7 +105,7 @@ class Compare extends MY_Controller {
     $config	= array(
       'base_url' => site_url('compare/compare_pool'),
       'total_rows' => count($this->session->compare),
-      'per_page' => '1'
+      'per_page' => '2'
     );
     $offset = ($this->input->get('p') > 0) ? $this->input->get('p') : '0';
     $this->pagination->initialize($config);

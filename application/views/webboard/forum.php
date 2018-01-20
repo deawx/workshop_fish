@@ -84,7 +84,7 @@
         </p>
       </div>
       <div class="panel-body">
-        <?=character_limiter($n['detail'],'150');?>
+        <?=character_limiter(strip_tags($n['detail']));?>
       </div>
       <div class="panel-footer">
         <span>โพสต์เมื่อ <?=$n['date_create'];?> : </span>

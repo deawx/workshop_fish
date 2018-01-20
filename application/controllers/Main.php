@@ -22,7 +22,7 @@ class Main extends MY_Controller {
     );
     $offset = ($this->input->get('p') > 0) ? $this->input->get('p') : '0';
     $this->pagination->initialize($config);
-    $this->data['fish'] = $this->db->get('fish',$config['per_page'],$offset)->result_array();
+    $this->data['fish'] = $this->db->order_by('id','DESC')->get('fish',$config['per_page'],$offset)->result_array();
     $this->data['pagination'] = $this->pagination->create_links();
     // $this->data['fish'] = $this->db->get('fish')->result_array();
     $this->data['content'] = $this->load->view('main', $this->data, TRUE);

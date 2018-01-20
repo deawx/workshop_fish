@@ -30,7 +30,7 @@ $form = [
 ];
 ?>
 
-<?=form_open_multipart(uri_string(),array('class'=>'form-horizontal'));?>
+<?=form_open_multipart(uri_string(),array('class'=>'form-horizontal'),array('date_create'=>date('d/m/Y')));?>
   <?=heading('เพิ่มข้อมูลผู้ใช้','4').hr();?>
   <?php foreach ($form as $_f => $f) : ?>
     <div class="form-group">
